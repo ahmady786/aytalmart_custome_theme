@@ -1,0 +1,13 @@
+.env*
+.shop-orders/
+.shop-enquiries/
+node_modules/
+.next/
+tmp/
+*.log
+*.tsbuildinfo
+*.pem
+*.key
+*.sql
+*.sqlite*
+.DS_Store

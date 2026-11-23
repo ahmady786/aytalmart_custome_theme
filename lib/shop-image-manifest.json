@@ -1,0 +1,597 @@
+{
+ "black-set-photo": {
+  "width": 1242,
+  "height": 2208,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122,
+   1242
+  ],
+  "avif": [
+   "black-set-photo-96-3434131cafa9.avif",
+   "black-set-photo-192-aaa32c2a85cf.avif",
+   "black-set-photo-320-14faa867a82a.avif",
+   "black-set-photo-400-62a4eb1fa819.avif",
+   "black-set-photo-640-9c0a0655babf.avif",
+   "black-set-photo-800-a0d51f1a995d.avif",
+   "black-set-photo-1122-5d9becc2a3e2.avif",
+   "black-set-photo-1242-6223998cbc6c.avif"
+  ],
+  "webp": [
+   "black-set-photo-96-ed3f4a26e726.webp",
+   "black-set-photo-192-242499579680.webp",
+   "black-set-photo-320-d81a2dd67fce.webp",
+   "black-set-photo-400-ff340bf961a5.webp",
+   "black-set-photo-640-35de5cdbec04.webp",
+   "black-set-photo-800-9237db7c4df1.webp",
+   "black-set-photo-1122-46534f3d6d0d.webp",
+   "black-set-photo-1242-de678f4b7d7b.webp"
+  ]
+ },
+ "black-set": {
+  "width": 1122,
+  "height": 1402,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122
+  ],
+  "avif": [
+   "black-set-96-52034f093862.avif",
+   "black-set-192-ea6b103ddc82.avif",
+   "black-set-320-5f70869868b9.avif",
+   "black-set-400-a7c0fae68189.avif",
+   "black-set-640-7d74c0bc4f43.avif",
+   "black-set-800-b576c8f41432.avif",
+   "black-set-1122-5066c62f198c.avif"
+  ],
+  "webp": [
+   "black-set-96-922e49325ad7.webp",
+   "black-set-192-15f61da7b450.webp",
+   "black-set-320-17bdc48b7401.webp",
+   "black-set-400-a717a00793d8.webp",
+   "black-set-640-14ef682e5c39.webp",
+   "black-set-800-fc128660dcd1.webp",
+   "black-set-1122-c2f2efe9e0e9.webp"
+  ]
+ },
+ "black-single-photo": {
+  "width": 2268,
+  "height": 4032,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122,
+   2268
+  ],
+  "avif": [
+   "black-single-photo-96-b5a4c8356608.avif",
+   "black-single-photo-192-2f06978b4de0.avif",
+   "black-single-photo-320-3a7c00619fd7.avif",
+   "black-single-photo-400-6ca40bee9ca6.avif",
+   "black-single-photo-640-610eaf285557.avif",
+   "black-single-photo-800-b1d5fe662966.avif",
+   "black-single-photo-1122-a971a0b32381.avif",
+   "black-single-photo-2268-995c1d963313.avif"
+  ],
+  "webp": [
+   "black-single-photo-96-e7be39d4ada7.webp",
+   "black-single-photo-192-d8941344173b.webp",
+   "black-single-photo-320-90e8b46392a6.webp",
+   "black-single-photo-400-35a576d6372d.webp",
+   "black-single-photo-640-8fd918d29103.webp",
+   "black-single-photo-800-da5ac9325592.webp",
+   "black-single-photo-1122-16d990074484.webp",
+   "black-single-photo-2268-3b409eff31e2.webp"
+  ]
+ },
+ "black-single": {
+  "width": 1122,
+  "height": 1402,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122
+  ],
+  "avif": [
+   "black-single-96-eb1184a37504.avif",
+   "black-single-192-d49f60a38b8a.avif",
+   "black-single-320-de30e1d286f0.avif",
+   "black-single-400-bf19da4dfa2c.avif",
+   "black-single-640-42f1b83f81d7.avif",
+   "black-single-800-17e0a6e08f9c.avif",
+   "black-single-1122-5765cadae370.avif"
+  ],
+  "webp": [
+   "black-single-96-825468f16e5d.webp",
+   "black-single-192-804bd8a8f8aa.webp",
+   "black-single-320-973929bb5196.webp",
+   "black-single-400-11badf294c6b.webp",
+   "black-single-640-ced2fb6a9965.webp",
+   "black-single-800-6a6ec44c08ed.webp",
+   "black-single-1122-6be2d194b7e5.webp"
+  ]
+ },
+ "gold-set-photo": {
+  "width": 1242,
+  "height": 2208,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122,
+   1242
+  ],
+  "avif": [
+   "gold-set-photo-96-008d587fce65.avif",
+   "gold-set-photo-192-5066be2a402f.avif",
+   "gold-set-photo-320-045e44f38b84.avif",
+   "gold-set-photo-400-46289d02aca0.avif",
+   "gold-set-photo-640-a05bb7f7eab3.avif",
+   "gold-set-photo-800-92471a196b16.avif",
+   "gold-set-photo-1122-6b407336274e.avif",
+   "gold-set-photo-1242-99e53b4acaca.avif"
+  ],
+  "webp": [
+   "gold-set-photo-96-822e64fbcdc0.webp",
+   "gold-set-photo-192-39b939eaf80f.webp",
+   "gold-set-photo-320-11b80dd5caa0.webp",
+   "gold-set-photo-400-9789f14239d6.webp",
+   "gold-set-photo-640-9565460ca619.webp",
+   "gold-set-photo-800-610f1862a5bc.webp",
+   "gold-set-photo-1122-84c0711a23b2.webp",
+   "gold-set-photo-1242-55a9d8446a6d.webp"
+  ]
+ },
+ "gold-set": {
+  "width": 1122,
+  "height": 1402,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122
+  ],
+  "avif": [
+   "gold-set-96-f2f35f132b06.avif",
+   "gold-set-192-36ab9ffc5784.avif",
+   "gold-set-320-9d9f4d9475fd.avif",
+   "gold-set-400-dffe8a756185.avif",
+   "gold-set-640-cdf32faa1d10.avif",
+   "gold-set-800-327c10379e80.avif",
+   "gold-set-1122-2368b40382c7.avif"
+  ],
+  "webp": [
+   "gold-set-96-19c25116a4c1.webp",
+   "gold-set-192-6062be8fde57.webp",
+   "gold-set-320-5c687b4dc01c.webp",
+   "gold-set-400-cde0547ef09a.webp",
+   "gold-set-640-9c4675c9996c.webp",
+   "gold-set-800-5f36eea7f657.webp",
+   "gold-set-1122-d8a63b822b2a.webp"
+  ]
+ },
+ "gold-single-photo": {
+  "width": 1242,
+  "height": 2208,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122,
+   1242
+  ],
+  "avif": [
+   "gold-single-photo-96-f6ee5bd77122.avif",
+   "gold-single-photo-192-4536e92969a5.avif",
+   "gold-single-photo-320-2ced9ea68b5d.avif",
+   "gold-single-photo-400-7c32b8c7ac87.avif",
+   "gold-single-photo-640-a9f86be067b6.avif",
+   "gold-single-photo-800-1d6687a34040.avif",
+   "gold-single-photo-1122-01c41aee119e.avif",
+   "gold-single-photo-1242-ffcfe87bcb4e.avif"
+  ],
+  "webp": [
+   "gold-single-photo-96-94999e4d18ea.webp",
+   "gold-single-photo-192-5aa43007bf94.webp",
+   "gold-single-photo-320-504aa51663f0.webp",
+   "gold-single-photo-400-328ceb38f92d.webp",
+   "gold-single-photo-640-8bb235ec87f0.webp",
+   "gold-single-photo-800-6ec37859905b.webp",
+   "gold-single-photo-1122-bd0904a09321.webp",
+   "gold-single-photo-1242-698553f8cb22.webp"
+  ]
+ },
+ "gold-single": {
+  "width": 1122,
+  "height": 1402,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122
+  ],
+  "avif": [
+   "gold-single-96-fdca5a3ef3ba.avif",
+   "gold-single-192-3086640b41f4.avif",
+   "gold-single-320-57b6a7fc78c7.avif",
+   "gold-single-400-d5d9882a7bac.avif",
+   "gold-single-640-abb47054c17e.avif",
+   "gold-single-800-38964b218365.avif",
+   "gold-single-1122-6c16a9359bd3.avif"
+  ],
+  "webp": [
+   "gold-single-96-26382ab515fc.webp",
+   "gold-single-192-b914de27b78d.webp",
+   "gold-single-320-0e899b3a49eb.webp",
+   "gold-single-400-e3315b081cf0.webp",
+   "gold-single-640-a6396b99efcb.webp",
+   "gold-single-800-5ba05d20e1c7.webp",
+   "gold-single-1122-e71be72c2620.webp"
+  ]
+ },
+ "silver-set-photo": {
+  "width": 1242,
+  "height": 2208,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122,
+   1242
+  ],
+  "avif": [
+   "silver-set-photo-96-a8b419031db0.avif",
+   "silver-set-photo-192-4075b57b8b7b.avif",
+   "silver-set-photo-320-66253c78b0f6.avif",
+   "silver-set-photo-400-9826f14a10b5.avif",
+   "silver-set-photo-640-b6f2fcd1cf20.avif",
+   "silver-set-photo-800-b15037b9e697.avif",
+   "silver-set-photo-1122-6db8e8786fc0.avif",
+   "silver-set-photo-1242-cd6935211b9e.avif"
+  ],
+  "webp": [
+   "silver-set-photo-96-320689d8627b.webp",
+   "silver-set-photo-192-7ce0ab047b73.webp",
+   "silver-set-photo-320-3721cdd7ca3c.webp",
+   "silver-set-photo-400-f2d750d13a44.webp",
+   "silver-set-photo-640-6cba012b9040.webp",
+   "silver-set-photo-800-8b9949a6ba7d.webp",
+   "silver-set-photo-1122-a00d66b5f637.webp",
+   "silver-set-photo-1242-9d8b4c9aefb9.webp"
+  ]
+ },
+ "silver-set": {
+  "width": 1122,
+  "height": 1402,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122
+  ],
+  "avif": [
+   "silver-set-96-0d3e4d4d0699.avif",
+   "silver-set-192-67ee730005ea.avif",
+   "silver-set-320-a9d716fd86b8.avif",
+   "silver-set-400-66f98e4784bf.avif",
+   "silver-set-640-f4aa15459e12.avif",
+   "silver-set-800-1a831ffbf59a.avif",
+   "silver-set-1122-e914feb0e11f.avif"
+  ],
+  "webp": [
+   "silver-set-96-21d1833d86cc.webp",
+   "silver-set-192-098ded18db65.webp",
+   "silver-set-320-e7ecb511523a.webp",
+   "silver-set-400-22c55511c335.webp",
+   "silver-set-640-d3dc7b10238f.webp",
+   "silver-set-800-e0b5899aeda2.webp",
+   "silver-set-1122-4946bd4b8561.webp"
+  ]
+ },
+ "silver-single-photo": {
+  "width": 1242,
+  "height": 2208,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122,
+   1242
+  ],
+  "avif": [
+   "silver-single-photo-96-14aebb66fb4b.avif",
+   "silver-single-photo-192-0b63aa66a5cb.avif",
+   "silver-single-photo-320-f18b654fdee7.avif",
+   "silver-single-photo-400-9bb8fd08e83b.avif",
+   "silver-single-photo-640-6e80e123806f.avif",
+   "silver-single-photo-800-b3bdd987c60c.avif",
+   "silver-single-photo-1122-6e3c027f5f94.avif",
+   "silver-single-photo-1242-4428915dcf50.avif"
+  ],
+  "webp": [
+   "silver-single-photo-96-ff24cda9cfca.webp",
+   "silver-single-photo-192-bb3212e09ea4.webp",
+   "silver-single-photo-320-779d60e2b56b.webp",
+   "silver-single-photo-400-91860add9f8b.webp",
+   "silver-single-photo-640-ac826ba37764.webp",
+   "silver-single-photo-800-0311cfe693ed.webp",
+   "silver-single-photo-1122-29280e397cf7.webp",
+   "silver-single-photo-1242-c7ebcbb58b30.webp"
+  ]
+ },
+ "silver-single": {
+  "width": 1122,
+  "height": 1402,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122
+  ],
+  "avif": [
+   "silver-single-96-45a7a3d3a6ef.avif",
+   "silver-single-192-f8392d2eace6.avif",
+   "silver-single-320-226b47a8db7a.avif",
+   "silver-single-400-6687549db9be.avif",
+   "silver-single-640-a6fd2365d2cf.avif",
+   "silver-single-800-fa6edc1f6266.avif",
+   "silver-single-1122-a59e0fa5ce61.avif"
+  ],
+  "webp": [
+   "silver-single-96-7f1cb3907e0c.webp",
+   "silver-single-192-87695067a30a.webp",
+   "silver-single-320-3060a5b8f7da.webp",
+   "silver-single-400-131436705335.webp",
+   "silver-single-640-c438a4be09a6.webp",
+   "silver-single-800-b6438e7aa4cd.webp",
+   "silver-single-1122-23358e4bf6fc.webp"
+  ]
+ },
+ "white-set-photo": {
+  "width": 1242,
+  "height": 2208,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122,
+   1242
+  ],
+  "avif": [
+   "white-set-photo-96-87150b115d23.avif",
+   "white-set-photo-192-602261428e65.avif",
+   "white-set-photo-320-6109a156b831.avif",
+   "white-set-photo-400-499a25d41786.avif",
+   "white-set-photo-640-27e9a2e243ef.avif",
+   "white-set-photo-800-54f1aa6257c6.avif",
+   "white-set-photo-1122-c78db12fc267.avif",
+   "white-set-photo-1242-08108c9ae7af.avif"
+  ],
+  "webp": [
+   "white-set-photo-96-70d808fc1329.webp",
+   "white-set-photo-192-6a66ac34bb74.webp",
+   "white-set-photo-320-718f75b87478.webp",
+   "white-set-photo-400-170ba4bbb8e3.webp",
+   "white-set-photo-640-35a056e13f0e.webp",
+   "white-set-photo-800-4750046bab41.webp",
+   "white-set-photo-1122-3adc9dcfb540.webp",
+   "white-set-photo-1242-ab4d48245b81.webp"
+  ]
+ },
+ "white-set": {
+  "width": 1122,
+  "height": 1402,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122
+  ],
+  "avif": [
+   "white-set-96-ef8f10b41420.avif",
+   "white-set-192-0eda3aadc8f2.avif",
+   "white-set-320-e441dccebe05.avif",
+   "white-set-400-b41b86c5dc87.avif",
+   "white-set-640-849f13f47ee3.avif",
+   "white-set-800-e40a5a0c62e1.avif",
+   "white-set-1122-0dde9363c39c.avif"
+  ],
+  "webp": [
+   "white-set-96-c2046b90b24a.webp",
+   "white-set-192-c8ad5217592c.webp",
+   "white-set-320-5563b2e5c672.webp",
+   "white-set-400-06232827fbf2.webp",
+   "white-set-640-a0359c1950c5.webp",
+   "white-set-800-b1906c82f039.webp",
+   "white-set-1122-8648da9f43c7.webp"
+  ]
+ },
+ "white-single-photo": {
+  "width": 1242,
+  "height": 2208,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122,
+   1242
+  ],
+  "avif": [
+   "white-single-photo-96-04a906583df8.avif",
+   "white-single-photo-192-59228036f928.avif",
+   "white-single-photo-320-ce2135c067ae.avif",
+   "white-single-photo-400-7d32493a277a.avif",
+   "white-single-photo-640-beb920cf4aaa.avif",
+   "white-single-photo-800-4aba6a3135f9.avif",
+   "white-single-photo-1122-354f5c2dbb14.avif",
+   "white-single-photo-1242-9846ad78f310.avif"
+  ],
+  "webp": [
+   "white-single-photo-96-4263271f7d86.webp",
+   "white-single-photo-192-451d489220ee.webp",
+   "white-single-photo-320-1a878a4ddf68.webp",
+   "white-single-photo-400-89da8f088618.webp",
+   "white-single-photo-640-f7c657d7cb56.webp",
+   "white-single-photo-800-ebf5b87887a9.webp",
+   "white-single-photo-1122-1dda926e0dd9.webp",
+   "white-single-photo-1242-5cff85acac75.webp"
+  ]
+ },
+ "white-single": {
+  "width": 1122,
+  "height": 1402,
+  "widths": [
+   96,
+   192,
+   320,
+   400,
+   640,
+   800,
+   1122
+  ],
+  "avif": [
+   "white-single-96-09e1b9e45605.avif",
+   "white-single-192-53649cf8e937.avif",
+   "white-single-320-93eccb722f06.avif",
+   "white-single-400-8cbc4f252f9e.avif",
+   "white-single-640-8f4a293f2cb6.avif",
+   "white-single-800-2a89a2107300.avif",
+   "white-single-1122-09b0d220e54a.avif"
+  ],
+  "webp": [
+   "white-single-96-e6f4178d76ea.webp",
+   "white-single-192-099f73447a75.webp",
+   "white-single-320-34ec68a2eb66.webp",
+   "white-single-400-ffb12dcb651e.webp",
+   "white-single-640-d3130654250d.webp",
+   "white-single-800-1375029225bc.webp",
+   "white-single-1122-9a69a7cabb0a.webp"
+  ]
+ },
+ "hero-01-complete-sets": {
+  "width": 1920,
+  "height": 940,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   1920
+  ],
+  "avif": [
+   "hero-01-complete-sets-480-18a815ea3778.avif",
+   "hero-01-complete-sets-800-10ee4c0a705e.avif",
+   "hero-01-complete-sets-1200-c0638d5a7ecc.avif",
+   "hero-01-complete-sets-1600-c0bcd390673d.avif",
+   "hero-01-complete-sets-1920-2e724b817290.avif"
+  ],
+  "webp": [
+   "hero-01-complete-sets-480-2fcd1dc56d6f.webp",
+   "hero-01-complete-sets-800-765b605ec3de.webp",
+   "hero-01-complete-sets-1200-db9eb6896a3b.webp",
+   "hero-01-complete-sets-1600-85d46cd3f252.webp",
+   "hero-01-complete-sets-1920-b0e21a9549fb.webp"
+  ]
+ },
+ "hero-02-quran-stands": {
+  "width": 1920,
+  "height": 940,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   1920
+  ],
+  "avif": [
+   "hero-02-quran-stands-480-13ef608a20e3.avif",
+   "hero-02-quran-stands-800-c16fc4f2c554.avif",
+   "hero-02-quran-stands-1200-bf20723d2235.avif",
+   "hero-02-quran-stands-1600-0db46f070659.avif",
+   "hero-02-quran-stands-1920-b06d288ca0f0.avif"
+  ],
+  "webp": [
+   "hero-02-quran-stands-480-09d0318a8bd2.webp",
+   "hero-02-quran-stands-800-823739832bb3.webp",
+   "hero-02-quran-stands-1200-951407fe6dd4.webp",
+   "hero-02-quran-stands-1600-a9bba2176c9f.webp",
+   "hero-02-quran-stands-1920-c46aa87b4e68.webp"
+  ]
+ },
+ "hero-03-golden-gallery": {
+  "width": 1920,
+  "height": 1080,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   1920
+  ],
+  "avif": [
+   "hero-03-golden-gallery-480-63c612c6947d.avif",
+   "hero-03-golden-gallery-800-33ba3d443cb6.avif",
+   "hero-03-golden-gallery-1200-1a441392a251.avif",
+   "hero-03-golden-gallery-1600-210cf5e96fae.avif",
+   "hero-03-golden-gallery-1920-8b7a25010c9a.avif"
+  ],
+  "webp": [
+   "hero-03-golden-gallery-480-58f36aa29075.webp",
+   "hero-03-golden-gallery-800-ae0f4c9da2bd.webp",
+   "hero-03-golden-gallery-1200-1cdfa29d0cf5.webp",
+   "hero-03-golden-gallery-1600-00b0a71cef8a.webp",
+   "hero-03-golden-gallery-1920-93334247cc51.webp"
+  ]
+ }
+}

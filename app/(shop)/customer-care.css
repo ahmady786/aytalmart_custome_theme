@@ -1,0 +1,34 @@
+.care-page,.stand-guide{max-width:1180px;margin-inline:auto}
+.care-layout,.stand-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,40px);margin-top:clamp(22px,3vw,36px);align-items:start}
+.care-card,.care-side,.stand-options article{min-width:0;border:1px solid var(--rule);border-radius:6px;background:#fffaf1}
+.care-card,.care-side{padding:clamp(20px,3vw,36px)}
+.care-side{background:#f6ead7}
+.care-layout h2,.stand-options h2{font-size:clamp(23px,2.4vw,34px);line-height:1.13;margin:0 0 14px}
+.care-layout p,.guide-intro,.stand-option-copy p{color:var(--dim);line-height:1.55}
+.care-layout p{margin-bottom:16px}.care-layout .care-foot{margin:24px 0 0;border-top:1px solid var(--rule);padding-top:16px}
+.care-side a:not(.shop-btn){text-underline-offset:3px;text-decoration:underline}
+.care-page dl{margin:20px 0 0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:10px 14px;font-size:15px;line-height:1.5}
+.care-page dt{color:var(--dim)}.care-page dd{margin:0;overflow-wrap:anywhere}
+.care-card .support-form{background:transparent;padding:0;border:0;margin:0}.care-card .support-form input,.care-card .support-form textarea{min-width:0}.care-card .support-form textarea{resize:vertical}
+.care-card .support-form button,.stand-guide .shop-btn,.prayer-shop .footer-support{min-height:44px}
+.care-card .support-form div:empty{display:none}.care-card .support-form p{margin:0}
+.guide-intro{max-width:61ch;margin:14px 0 0}.stand-options{align-items:stretch}
+.stand-options article{display:grid;grid-template-columns:minmax(0,36%) minmax(0,1fr);overflow:hidden}
+.stand-photo{background:#f0e3ca;display:grid;align-items:center}.stand-photo .shop-picture{display:block}.stand-photo img{width:100%;height:auto;max-height:285px;object-fit:contain}
+.stand-option-copy{padding:clamp(14px,2vw,24px);display:flex;flex-direction:column;align-items:flex-start}.stand-option-copy p{margin:0 0 16px}.stand-option-copy strong{display:block;margin:auto 0 10px}
+.guide-care{display:inline-flex;align-items:center;margin-top:18px;min-height:44px}
+@media(max-width:760px){.care-layout,.stand-options{grid-template-columns:minmax(0,1fr)}.stand-options article{grid-template-columns:minmax(0,32%) minmax(0,1fr)}.stand-photo img{max-height:225px}.care-side dl{font-size:14px}}
+@media(max-width:400px){.care-side dl{grid-template-columns:1fr;gap:0}.care-side dt:not(:first-child){margin-top:10px}.stand-option-copy .shop-btn{padding:9px 11px;font-size:14px}}
+.mast-toggle,.mast-menu .mast-phone-link,.hero-phone-title{display:none}
+@media(max-width:740px),(max-width:950px) and (max-height:520px) and (orientation:landscape){
+ .store-mast{z-index:5}.mast-inner{position:relative;display:flex;align-items:center;justify-content:space-between;padding-block:5px;min-height:54px}
+ .mast-toggle{display:grid;place-items:center;width:44px;height:44px;color:var(--ink);border:1px solid #b29462;border-radius:5px;background:#fff5df}
+ .mast-menu{display:none}.mast-menu[data-open=true]{position:absolute;display:grid;z-index:2;top:100%;inset-inline:0;margin:0;padding:6px clamp(18px,5vw,50px) 10px;gap:0;max-height:calc(100dvh - 94px);overflow-y:auto;background:#fff8e9;border-block:1px solid #b89457;box-shadow:0 8px 18px #3c291b20}
+ .mast-menu a,.mast-menu .mast-phone-link{display:flex;align-items:center;justify-content:start;min-height:46px;padding:7px 4px;border-bottom:1px solid #e7d7ba;font-size:15px}
+ .mast-menu a:last-child{border-bottom:0}.mast-menu a::after{display:none}.mast-menu a[aria-current]{color:#724713}
+ .prayer-shop .mast-bag{display:none}.hero-phone-title{display:block;text-align:center;padding:12px 10px 9px;background:#fff8e9;font:clamp(22px,6vw,32px)/1.12 Georgia,serif}
+ .hero-stage{width:100%;height:auto;aspect-ratio:auto;background:#f4e8d1}.hero-photo{display:block;width:min(100%,540px,61svh);height:auto;margin:auto;overflow:hidden;aspect-ratio:4/5}
+ .hero-wing{display:none}.hero-artwork{display:block;width:100%;height:100%;aspect-ratio:auto}.hero-artwork img{display:block;width:100%;height:100%;object-fit:contain}
+ .hero-mobile-offer{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:46px;padding:8px max(14px,calc((100% - 520px)/2));background:#fff8e9;font-size:14px}
+ .hero-mobile-offer span{font-weight:650;text-decoration:none}.hero-mobile-offer strong{white-space:nowrap}.hero-mobile-offer del{color:#765e47;font-size:12px;font-weight:400;margin-left:3px}
+}

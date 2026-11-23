@@ -1,0 +1,32 @@
+/*
+Theme Name: AYTAL MART
+Description: Golden storefront for AYTAL MART. Native Site Editor and WooCommerce, no page builder.
+Version: 1.0.0
+Requires at least: 6.6
+Requires PHP: 8.1
+Text Domain: aytal-mart
+*/
+:root{--ink:#302319;--gold:#8b6329;--cream:#fbf7ee;--line:#dcccb2}
+body{margin:0;color:var(--ink);background:var(--cream);font-family:system-ui,sans-serif}
+.wp-site-blocks>*+*,.wp-site-blocks>header+main{margin-block-start:0}
+a{color:inherit;text-underline-offset:.2em}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #ab752a;outline-offset:3px}
+.am-benefits{background:#39291d;color:#fff6e5;text-align:center;padding:.48rem 1rem;font-size:clamp(.68rem,2vw,.85rem);margin:0;letter-spacing:.025em}
+.am-header{border-bottom:1px solid var(--line);background:#fffaf1;padding:1rem max(5vw,16px);gap:1rem}
+.am-header .wp-block-site-logo img{max-height:57px;width:auto}.am-header .wp-block-site-title{font-family:Georgia,serif}
+.am-footer{background:#38291e;color:#fff3de;padding:3rem max(5vw,16px)}.am-footer a{color:#fff3de}
+.am-body,.woocommerce-page .wp-site-blocks>main{max-width:1190px;margin:auto;padding:clamp(20px,4vw,55px) max(4vw,16px);box-sizing:content-box}
+.am-home{padding-bottom:3rem}.am-home .wp-block-post-content>.wp-block-heading,.am-home .wp-block-post-content>.woocommerce,.am-home .wp-block-post-content>.am-intro{max-width:1150px;margin-inline:auto;padding-inline:clamp(16px,4vw,46px)}
+.am-hero{margin:0 auto;background:#f2e5d1}.am-hero .wp-block-image{margin:0;text-align:center}.am-hero .wp-block-image img{width:100%;height:auto;max-height:66svh;object-fit:contain;display:block;margin:auto}
+.am-hero.is-ready .am-slide:not(.active){display:none}.am-hero .am-slide{margin-block-start:0}
+.am-controls{background:#3d2b1d;color:white;display:flex;align-items:center;justify-content:center;gap:15px;padding:5px}.am-controls button{border:1px solid #b89a6e;background:transparent;color:white;border-radius:50%;min-width:40px;min-height:40px;cursor:pointer}
+.am-controls span{font-size:.78rem}.am-home h2{margin-top:clamp(2rem,5vw,4rem)}
+.woocommerce ul.products li.product a img{border-radius:10px}.woocommerce span.onsale{background:#76551e;color:white}.woocommerce div.product .price,.woocommerce ul.products li.product .price{color:#73501d}
+.woocommerce .button,.woocommerce button.button.alt,.woocommerce a.button.alt,.wc-block-components-button,.wp-block-button__link{background:#402b1d;color:#fff;border-radius:8px}
+.woocommerce div.product form.cart .single_add_to_cart_button{padding:1em 1.6em;min-height:48px;transition:transform .18s,background .18s}.woocommerce div.product form.cart .single_add_to_cart_button:hover{transform:translateY(-2px);background:#78541e}
+.am-options{display:grid;gap:.7rem;margin:1rem 0}.am-options>div{display:flex;gap:.45rem;flex-wrap:wrap}.am-options a,.am-packs label{border:1px solid #bba789;padding:.45rem .72rem;text-decoration:none;border-radius:8px}.am-options [aria-current],.am-packs label:has(:checked){border-color:#715020;background:#eee1cb}
+.am-packs{border:0;margin:.7rem 0 1rem;padding:0}.am-packs legend{font-weight:650;margin-bottom:.55rem}.am-packs label{display:inline-flex;align-items:center;gap:.3rem;margin:0 .4rem .4rem 0;cursor:pointer}
+.am-footer-links{display:flex;flex-wrap:wrap;gap:.65rem 1.2rem;font-size:.9rem}.am-check-qty{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem}.am-check-qty input{width:4em}.am-intro{margin-block:2rem}.am-home .am-home-cards{max-width:1150px;margin:2rem auto;padding:0 1rem}.am-home-cards a{font-size:1.1em}
+.am-buy-form .quantity{display:none!important}.am-note{font-size:.9rem;padding:.75rem;border-inline-start:3px solid var(--gold);background:#f5ebdb}
+.am-home-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.7rem,3vw,2rem)}.am-home-cards>a{border:1px solid #d6c5a6;display:flex;align-items:center;gap:1rem;background:#fffaf0;color:#402b1d;border-radius:12px;overflow:hidden;text-decoration:none;font-family:Georgia,serif}.am-home-cards img{width:35%;max-width:120px;height:auto}.am-home .woocommerce,.am-home .am-home-cards{box-sizing:border-box}.am-hero:not(.is-ready) .am-slide~.am-slide{display:none}
+@media(max-width:650px){.am-header{padding-block:.65rem}.am-header .wp-block-site-logo img{max-height:44px}.am-hero .wp-block-image img{max-height:none}.am-footer{padding-block:2rem}.woocommerce table.shop_table{font-size:.88rem}}
+@media(prefers-reduced-motion:no-preference){.am-buy-form .single_add_to_cart_button{animation:am-pulse 4s ease-in-out infinite}@keyframes am-pulse{0%,70%,100%{box-shadow:0 0 0 0 transparent}80%{box-shadow:0 0 0 5px #ac85322e}}}

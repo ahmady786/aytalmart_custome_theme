@@ -1,0 +1,70 @@
+/* Style the buying column only. Gallery, carousel and header keep their layout. */
+.pdp .detail-copy.purchase-panel {width:100%;max-width:540px}
+.pdp .detail-copy.purchase-panel h1 {max-width:23ch;margin:0 0 15px;color:#382719;font:700 clamp(29px,3vw,43px)/1.16 "Segoe UI",sans-serif;letter-spacing:-.035em}
+.purchase-panel .prices.large {gap:12px;align-items:center;margin-bottom:20px}
+.purchase-panel .prices.large del {font-size:15px}.purchase-panel .prices.large strong {font-size:20px}
+.purchase-panel .pdp-discount {padding:3px 12px;border-radius:2px;font-size:12px}
+.buy-activity-slot {min-height:32px}
+.buy-activity {display:inline-flex;align-items:center;flex-wrap:wrap;gap:5px 10px;max-width:100%;padding:6px 10px;background:#f8efdc;border-inline-start:2px solid #b48842;color:#624927;font:12px/1.45 "Segoe UI",sans-serif}
+.buy-activity>span {display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.buy-activity b {font-variant-numeric:tabular-nums;color:#402c19}
+.activity-viewers i {width:7px;height:7px;border-radius:50%;background:#a77325;box-shadow:0 0 0 2px #ebd4ab;margin-inline:2px 3px}
+.activity-viewers+.activity-sold {border-inline-start:1px solid #cfb893;padding-inline-start:10px}
+.pdp .purchase-panel .buy-label {margin:12px 0 3px;font-size:13px;line-height:1.4;color:#705638}
+.buy-label strong {color:var(--ink)}
+.buy-swatches,.buy-options {display:flex;align-items:center;flex-wrap:wrap;gap:3px}
+.buy-swatches :is(a,button) {display:grid;place-items:center;width:42px;height:42px;padding:0;border:0;background:transparent}
+.buy-swatches i {display:block;width:26px;height:26px;border:1px solid #0003;border-radius:100%}
+.buy-swatches :is([aria-current=page],[aria-pressed=true]) i {outline:2px solid #755022;outline-offset:3px}
+.buy-options {gap:7px;margin-top:6px}
+.buy-options a {display:inline-flex;align-items:center;min-height:38px;padding:6px 16px;border:1px solid #a18863;border-radius:100px;font-size:13px;color:#5c432b}
+.buy-options a[aria-current=page] {background:#55391f;color:#fff9ed;border-color:#55391f;font-weight:650}
+.buy-options a:hover {border-color:#60411e}
+.pack-offers {display:grid;gap:14px;min-width:0;margin:18px 0 0;padding:0;border:0}
+.pack-offers legend {padding:0;margin:0 0 9px;font-size:13px;color:#705638}
+.pack-card {position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;min-height:62px;padding:10px 14px;border:1px solid #cdbb9a;border-radius:10px;background:#fbf5e9;color:#462f1a;cursor:pointer}
+.pack-card[data-selected=true] {background:#f7eacb;border-color:#805a26;box-shadow:inset 0 0 0 1px #805a26}
+.pack-card input {appearance:auto;width:18px;height:18px;margin:0;accent-color:#805a26}
+.pack-card:focus-within {outline:2px solid #805a26;outline-offset:3px}
+.pack-card[data-disabled=true] {opacity:.55;cursor:not-allowed}
+.pack-choice {display:flex;align-items:center;flex-wrap:wrap;gap:3px 8px}
+.pack-choice b,.pack-price strong {font-size:16px}
+.pack-choice small {display:inline-block;padding:2px 6px;border:1px solid #cebb99;border-radius:4px;background:#fffaf0;font-size:11px;white-space:nowrap}
+.pack-price {display:grid;text-align:right;font-variant-numeric:tabular-nums;line-height:1.25}
+.pack-price del {font-size:12px;color:#735d47}
+.pack-ribbon {position:absolute;right:12px;top:-11px;border-radius:4px;background:#69471f;color:#fff8e9;font-size:10px;font-weight:700;padding:1px 9px}
+.buy-cod {display:block;width:100%;margin:14px 0;padding:0;border:0;background:transparent;color:#fff6e4;font-weight:700;font-size:16px;border-radius:7px;scroll-margin:24px}
+.buy-cod-face {position:relative;display:grid;place-items:center;min-height:56px;padding:11px 43px;overflow:hidden;pointer-events:none;border-radius:inherit;background:linear-gradient(110deg,#422c18,#80551e 52%,#46301d);box-shadow:inset 0 0 0 1px #ad884b,0 2px 6px #55391f24}
+.buy-cod svg {position:absolute;left:17px;color:#f3d49a}
+.buy-cod:enabled:focus-visible {outline:3px solid #946e30;outline-offset:5px}
+.buy-cod:disabled,.buy-bag:disabled {opacity:.55;cursor:not-allowed}
+@media (prefers-reduced-motion:no-preference) {
+ .buy-cod[data-in-view]:enabled .buy-cod-face {animation:cod-lift 3.6s ease-in-out infinite}
+ .buy-cod[data-in-view]:enabled .buy-cod-face::after {content:"";position:absolute;inset:-30% auto -30% 0;width:26%;background:linear-gradient(90deg,transparent,#ffe9aa55,transparent);animation:cod-gold-shine 3.6s ease-in-out infinite}
+ @keyframes cod-lift {
+   0%,32%,100% {transform:none}
+   10% {transform:translateY(-5px) scale(1.016)}
+   19% {transform:translateY(-1px) scale(1.003)}
+   25% {transform:translateY(-2px) scale(1.008)}
+ }
+ @keyframes cod-gold-shine {0% {transform:translateX(-160%) skewX(-18deg)} 32%,100% {transform:translateX(490%) skewX(-18deg)}}
+ .buy-cod[data-in-view]:enabled:is(:active,:focus-visible) .buy-cod-face {animation:none}
+ .buy-cod:enabled:active .buy-cod-face {transform:scale(.985)}
+}
+.buy-parcel {display:flex;align-items:center;justify-content:center;gap:14px;width:fit-content;max-width:100%;padding:10px 20px;border:1px solid #b28a47;border-radius:6px;background:#755022;color:#fff6e3}
+.buy-parcel p {margin:0;font:500 clamp(19px,2vw,23px)/1.8 "Nirmala UI",Tahoma,serif;text-align:right}
+.buy-parcel>span {order:1;display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:4px;background:#f6e4b4;color:#5e411e;font-weight:700}
+.buy-bag {display:block;min-height:40px;color:#705329;text-decoration:underline;text-underline-offset:3px;font-size:13px}
+.pdp .purchase-panel>p.buy-description {margin:9px 0 15px;font-size:14px}
+.purchase-panel .buy-description strong {color:var(--ink)}
+@media(max-width:390px){.buy-options a {padding-inline:12px;font-size:12px}.buy-cod{font-size:15px}.buy-parcel{padding-inline:12px}}
+.most-bought {max-width:1440px;padding:clamp(22px,4vw,50px) clamp(16px,4vw,60px) clamp(34px,5vw,68px);border-top:1px solid var(--rule)}
+.most-bought header {display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.most-bought h2 {font-size:clamp(29px,3vw,43px);line-height:1.1;margin:5px 0}
+.most-bought header div>p:last-child {font-size:14px;color:var(--dim)}
+.most-bought .sku-card {display:block;position:relative;border:1px solid #dac8a7;background:#fffcf6;border-radius:9px;overflow:hidden}
+.most-bought .sku-info {padding:12px;border:0}
+.most-bought .studio-window {aspect-ratio:1.075}
+.prayer-shop .most-bought .studio-window img {top:-16.8%}
+.merch-badge {position:absolute;top:9px;left:9px;padding:3px 8px;border-radius:20px;background:#fff9ec;color:#5d411c;border:1px solid #c9ad79;font-weight:650;font-size:11px}
+.most-bought .sku-card:focus-visible {outline-offset:2px}

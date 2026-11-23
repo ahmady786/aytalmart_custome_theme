@@ -1,0 +1,11 @@
+{
+ "version": 3,
+ "settings": {
+   "appearanceTools": true,
+   "layout": {"contentSize":"780px","wideSize":"1180px"},
+   "color":{"palette":[{"slug":"cream","name":"Ivory","color":"#fbf7ee"},{"slug":"ink","name":"Espresso","color":"#302319"},{"slug":"gold","name":"Antique gold","color":"#8b6329"}]},
+   "typography":{"fluid":true,"fontFamilies":[{"slug":"serif","name":"Display","fontFamily":"Georgia,serif"},{"slug":"body","name":"Body","fontFamily":"system-ui,sans-serif"}]}
+ },
+ "styles":{"color":{"background":"#fbf7ee","text":"#302319"},"typography":{"fontFamily":"system-ui,sans-serif","lineHeight":"1.55"},"elements":{"heading":{"typography":{"fontFamily":"Georgia,serif","fontWeight":"500","lineHeight":"1.15"}}}},
+ "templateParts":[{"name":"header","title":"Store header","area":"header"},{"name":"footer","title":"Store footer","area":"footer"}]
+}

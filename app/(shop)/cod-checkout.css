@@ -1,0 +1,31 @@
+.cod-dialog,.cod-standalone {color:#352819;background:#fffdf8;font:15px/1.45 "Segoe UI",sans-serif}
+.cod-dialog {position:fixed;inset:0;width:min(1080px,calc(100% - 36px));max-width:none;max-height:92dvh;overflow:auto;overscroll-behavior:contain;margin:auto;padding:0;border:1px solid #a88750;border-radius:12px;box-shadow:0 18px 80px #21160955}
+.cod-dialog::backdrop {background:rgb(34 26 16 / 58%)}
+.cod-head,.cod-standalone>h1 {padding:12px clamp(16px,2.5vw,28px);border-bottom:1px solid #e4d5bc;background:#fbf4e6}
+.cod-head {position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between}
+.prayer-shop .cod-head h2,.cod-standalone>h1 {font:700 18px/1.3 "Segoe UI",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.cod-head h2 span {color:#885b22}
+.cod-head button {width:40px;height:40px;color:#473219;font-size:25px;border-radius:50%}
+.cod-head button:hover {background:#f0dfb9}
+.cod-form {display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);align-items:start;gap:clamp(20px,3vw,38px);padding:clamp(16px,2.5vw,28px)}
+.prayer-shop .cod-shipping h3 {font:600 clamp(21px,2vw,28px)/1.2 Georgia,serif;margin:3px 0 18px}
+.cod-fields {display:grid;grid-template-columns:1fr 1fr;gap:12px;min-width:0;padding:0;border:0}
+.cod-fields label {display:grid;gap:5px;min-width:0;font-size:13px;font-weight:600}
+.cod-fields input {width:100%;min-height:42px;padding:8px 10px;border:1px solid #cdbca2;border-radius:5px;background:white;font-family:inherit;font-size:16px;line-height:1.3;font-weight:400;color:#382719}
+.cod-section-label {margin:20px 0 6px;font-size:13px;font-weight:600}
+.cod-method {display:flex;justify-content:space-between;gap:10px;padding:11px 14px;background:#f8efd9;border:1px solid #bd9a5a;border-radius:6px}
+.cod-review {display:grid;gap:10px;min-width:0}
+.cod-item {display:flex;align-items:center;gap:15px;padding:12px;border:1px solid #ddceb6;border-radius:8px;background:white}
+.cod-item .shop-picture {display:block;flex:0 0 58px;width:58px}.cod-item img {display:block;width:100%;height:77px;object-fit:contain;background:#f7f1e5;border-radius:4px}
+.cod-item small,.cod-item strong {display:block}.cod-item small {color:#705c45}
+.cod-qty {display:inline-flex;align-items:center;border:1px solid #d6c5a9;border-radius:5px;margin-top:5px}
+.cod-qty button,.cod-qty output {min-width:34px;text-align:center}.cod-qty button {min-height:34px}.cod-qty button:disabled {opacity:.4}
+.cod-totals {display:grid;grid-template-columns:1fr auto;gap:4px 0;margin:0;padding:14px;border-radius:7px;background:#f4ead8}
+.cod-totals dd {margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.cod-total {padding-top:8px;margin-top:5px!important;border-top:1px solid #d3bd94;font-size:18px;font-weight:700}
+.cod-submit,.cod-whatsapp {width:100%;min-height:44px;text-align:center}
+.cod-whatsapp {display:grid;place-items:center;border:1px solid #ad8b52;background:#fff9ec;border-radius:5px;color:#5f401c;font-weight:600}
+.cod-error {color:#92341e}.cod-result {padding:24px;overflow-wrap:anywhere}.cod-result p {margin:10px 0 16px}
+.cod-standalone {max-width:1080px;margin:32px auto;border:1px solid #deceb3;border-radius:10px;overflow:hidden}
+@media(max-width:720px){.cod-form{grid-template-columns:1fr;gap:16px}.cod-dialog{width:calc(100% - 16px);max-height:95dvh}.cod-head{padding-block:5px}.cod-section-label{margin-top:14px}.cod-standalone{margin:14px 8px}}
+@media(max-width:480px){.cod-fields{grid-template-columns:1fr;gap:9px}.cod-qty button{min-height:42px;min-width:42px}}
