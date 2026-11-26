@@ -7,6 +7,10 @@ function ao_image($id){
 function ao_data($route){
 	$d=array('route'=>$route,'base'=>get_stylesheet_directory_uri().'/dist','home'=>home_url('/'),'urls'=>array('/'=>home_url('/'),'/collection'=>wc_get_page_permalink('shop'),'/checkout'=>wc_get_checkout_url(),'/bag'=>wc_get_checkout_url()),'catalog'=>array(),'images'=>array(),'frames'=>array(),'pages'=>array(),'categories'=>array(),'extra'=>array(),'ajax'=>WC_AJAX::get_endpoint('ao_prepare'),'checkout'=>WC_AJAX::get_endpoint('checkout'),'help'=>WC_AJAX::get_endpoint('ao_help'),'boot'=>WC_AJAX::get_endpoint('ao_boot'));
 	$d['activity']=WC_AJAX::get_endpoint('ao_activity');
+	$d['urls']['/my-account']=wc_get_page_permalink('myaccount');
+	$d['urls']['/cart']=wc_get_cart_url();
+	$d['cartView']=WC_AJAX::get_endpoint('ao_cart_view');
+	$d['cartEndpoint']=WC_AJAX::get_endpoint('ao_cart_checkout');
 	if($route==='/')foreach(ao_phone_slides() as $key=>$label){
 		$id=(int)get_theme_mod('ao_mobile_'.$key,0);if($id && wp_attachment_is_image($id))$d['images']['mobile-hero-'.$key]=ao_image($id);
 	}

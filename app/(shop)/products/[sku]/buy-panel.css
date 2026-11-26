@@ -18,12 +18,14 @@
 .buy-swatches :is([aria-current=page],[aria-pressed=true]) i {outline:2px solid #755022;outline-offset:3px}
 .buy-options {gap:7px;margin-top:6px}
 .buy-options a {display:inline-flex;align-items:center;min-height:38px;padding:6px 16px;border:1px solid #a18863;border-radius:100px;font-size:13px;color:#5c432b}
-.buy-options a[aria-current=page] {background:#55391f;color:#fff9ed;border-color:#55391f;font-weight:650}
+.buy-options a[aria-current=page] {background:#55391f;color:#fff;border-color:#55391f;font-weight:650}
 .buy-options a:hover {border-color:#60411e}
 .pack-offers {display:grid;gap:14px;min-width:0;margin:18px 0 0;padding:0;border:0}
 .pack-offers legend {padding:0;margin:0 0 9px;font-size:13px;color:#705638}
 .pack-card {position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;min-height:62px;padding:10px 14px;border:1px solid #cdbb9a;border-radius:10px;background:#fbf5e9;color:#462f1a;cursor:pointer}
-.pack-card[data-selected=true] {background:#f7eacb;border-color:#805a26;box-shadow:inset 0 0 0 1px #805a26}
+.pack-card[data-selected=true] {background:#55391f;color:#fff;border-color:#55391f}
+.pack-card[data-selected=true] .pack-choice small {color:#fff;background:transparent;border-color:#b9a088}
+.pack-card[data-selected=true] .pack-price del,.pack-card[data-selected=true] .pack-ribbon {color:#fff}
 .pack-card input {appearance:auto;width:18px;height:18px;margin:0;accent-color:#805a26}
 .pack-card:focus-within {outline:2px solid #805a26;outline-offset:3px}
 .pack-card[data-disabled=true] {opacity:.55;cursor:not-allowed}

@@ -2,8 +2,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {useEffect,useRef,useState} from 'react'
-import { useBag } from './Bag'
-import { totals } from '@/lib/catalog'
+import {useShopCart} from './ShopCart'
+import CartDrawer,{UtilityIcon} from './CartDrawer'
 import { BrandLogo, DeliveryStrip } from './Brand'
 import {phoneMedia} from './ShopImage'
 const destinations=[
@@ -11,9 +11,9 @@ const destinations=[
 ] as const
 
 export function ShopHeader() {
-  const { items } = useBag()
+  const cart=useShopCart()
   const path=usePathname()
-  const units=totals(items).units
+  const units=cart.lines.reduce((n,l)=>n+l.quantity,0)
   const [open,setOpen]=useState(false)
   const mast=useRef<HTMLElement>(null),trigger=useRef<HTMLButtonElement>(null)
   useEffect(()=>{
@@ -33,9 +33,10 @@ export function ShopHeader() {
       <nav id="mast-navigation" aria-label="Store" className="mast-menu" data-open={open} onClick={()=>setOpen(false)}>{destinations.map(([label,href])=>{
         const section=href==='/collections' && (path==='/collection'||path.startsWith('/collections/')||path.startsWith('/products/'))
         return <Link key={href} prefetch={false} href={href} aria-current={path===href?'page':section?'location':undefined}>{label}</Link>
-      })}<Link className="mast-phone-link" href="/pages/track-your-order">Track Order</Link>{units>0&&<Link className="mast-phone-link" href="/checkout">Resume checkout</Link>}</nav>
-      {units>0&&<Link prefetch={false} className="mast-bag" href="/checkout">Resume checkout</Link>}
+      })}<Link className="mast-phone-link" href="/pages/track-your-order">Track Order</Link><Link className="mast-phone-link" href="/my-account">My Account</Link></nav>
+      <div className="mast-tools"><Link className="mast-account" prefetch={false} href="/my-account"><UtilityIcon account/> My Account</Link><button type="button" className="mast-cart" aria-haspopup="dialog" aria-label={'Open cart'+(cart.ready?', '+units+' items':'')} onClick={()=>{setOpen(false);cart.show()}}><UtilityIcon/><span>Cart</span><b aria-hidden="true">{cart.ready?units:'–'}</b></button></div>
     </div>
     </header>
+    <CartDrawer/>
   </>
 }

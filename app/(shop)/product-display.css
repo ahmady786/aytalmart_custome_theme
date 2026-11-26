@@ -40,7 +40,8 @@
 .pair-heading>p:last-child {font-size:14px;color:var(--dim)}
 .pair-items {grid-column:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .pair-items label {display:grid;grid-template-columns:clamp(60px,6vw,88px) minmax(0,1fr) 18px;align-items:center;gap:10px;padding:12px;min-width:0;background:#fffcf5;border:1px solid #d8cab4;border-radius:8px;cursor:pointer}
-.pair-items label[data-selected=true] {background:#fff9ec;border-color:#a7864d}
+.pair-items label[data-selected=true] {background:#55391f;border-color:#55391f;color:#fff}
+.pair-items label[data-selected=true] :is(.pair-copy>small,.pair-price del){color:#fff}
 .pair-items label:focus-within {outline:2px solid #88602a;outline-offset:2px}
 .pair-thumb {grid-column:1;grid-row:1;display:block;width:100%;border-radius:5px;background:#ead8b6}
 .pair-copy {grid-column:2;grid-row:1;min-width:0;line-height:1.35}.pair-copy>b {display:block;font-size:15px}

@@ -8,6 +8,6 @@ add_action( 'after_setup_theme', static function () {
 	add_editor_style( 'style.css' );
 } );
 add_action( 'wp_enqueue_scripts', static function () {
-	wp_enqueue_style( 'aytal-store', get_stylesheet_uri(), array(), '1.0.0' );
+	wp_enqueue_style( 'aytal-store', get_stylesheet_uri(), array(), wp_get_theme()->get('Version') );
 	wp_enqueue_script( 'aytal-store', get_theme_file_uri( 'store.js' ), array(), '1.0.0', array( 'strategy'=>'defer', 'in_footer'=>true ) );
 } );

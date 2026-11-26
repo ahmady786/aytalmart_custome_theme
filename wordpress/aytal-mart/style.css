@@ -1,7 +1,7 @@
 /*
 Theme Name: AYTAL MART
 Description: Golden storefront for AYTAL MART. Native Site Editor and WooCommerce, no page builder.
-Version: 1.0.0
+Version: 1.0.2
 Requires at least: 6.6
 Requires PHP: 8.1
 Text Domain: aytal-mart
@@ -23,7 +23,7 @@ a{color:inherit;text-underline-offset:.2em}a:focus-visible,button:focus-visible,
 .woocommerce ul.products li.product a img{border-radius:10px}.woocommerce span.onsale{background:#76551e;color:white}.woocommerce div.product .price,.woocommerce ul.products li.product .price{color:#73501d}
 .woocommerce .button,.woocommerce button.button.alt,.woocommerce a.button.alt,.wc-block-components-button,.wp-block-button__link{background:#402b1d;color:#fff;border-radius:8px}
 .woocommerce div.product form.cart .single_add_to_cart_button{padding:1em 1.6em;min-height:48px;transition:transform .18s,background .18s}.woocommerce div.product form.cart .single_add_to_cart_button:hover{transform:translateY(-2px);background:#78541e}
-.am-options{display:grid;gap:.7rem;margin:1rem 0}.am-options>div{display:flex;gap:.45rem;flex-wrap:wrap}.am-options a,.am-packs label{border:1px solid #bba789;padding:.45rem .72rem;text-decoration:none;border-radius:8px}.am-options [aria-current],.am-packs label:has(:checked){border-color:#715020;background:#eee1cb}
+.am-options{display:grid;gap:.7rem;margin:1rem 0}.am-options>div{display:flex;gap:.45rem;flex-wrap:wrap}.am-options a,.am-packs label{border:1px solid #bba789;padding:.45rem .72rem;text-decoration:none;border-radius:8px}.am-options a[aria-current],.am-packs label:has(:checked){border-color:#55391f;background:#55391f;color:#fff}
 .am-packs{border:0;margin:.7rem 0 1rem;padding:0}.am-packs legend{font-weight:650;margin-bottom:.55rem}.am-packs label{display:inline-flex;align-items:center;gap:.3rem;margin:0 .4rem .4rem 0;cursor:pointer}
 .am-footer-links{display:flex;flex-wrap:wrap;gap:.65rem 1.2rem;font-size:.9rem}.am-check-qty{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem}.am-check-qty input{width:4em}.am-intro{margin-block:2rem}.am-home .am-home-cards{max-width:1150px;margin:2rem auto;padding:0 1rem}.am-home-cards a{font-size:1.1em}
 .am-buy-form .quantity{display:none!important}.am-note{font-size:.9rem;padding:.75rem;border-inline-start:3px solid var(--gold);background:#f5ebdb}

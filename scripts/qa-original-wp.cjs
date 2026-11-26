@@ -2,12 +2,12 @@
 const fs=require('fs'),http=require('http'),path=require('path'),assert=require('node:assert/strict')
 const root=path.resolve(__dirname,'..'),dist=path.join(root,'wordpress/aytal-original/dist'),t=path.join(root,'tmp/aytal-parity-tools/node_modules'),{chromium}=require(path.join(t,'playwright-core')),{PNG}=require(path.join(t,'pngjs'))
 const output=path.join(root,'tmp/aytal-parity');fs.mkdirSync(output,{recursive:true})
-const catalog=['set','single'].flatMap(kind=>['Gold','White','Silver','Black'].map(finish=>({sku:finish.toLowerCase()+'-'+kind,kind,finish,name:kind==='set'?'Quran & Janamaz Stand Set':'Quran Stand',price:kind==='set'?2999:2199,original:4000,available:true,sales:0})))
+const catalog=['set','single'].flatMap(kind=>['Gold','White','Silver','Black'].map(finish=>({sku:finish.toLowerCase()+'-'+kind,kind,finish,name:kind==='set'?'Quran & Janamaz Stand Set':'Quran Stand',price:kind==='set'?2999:2199,original:kind==='set'?3500:4000,available:true,sales:0})))
 function send(res,code,type,content){res.writeHead(code,{'Content-Type':type});res.end(content)}
 const received=[];
 const messages=[];
 let basketQty=2;
-function nativeBasket(){const a=basketQty,off=200*Math.floor(a/2),sub=(2999*a)+300;
+function nativeBasket(){const a=basketQty,off=498*Math.floor(a/2),sub=(2999*a)+300;
  return {hash:'basket-'+a,lines:[{key:'woo-line-a',name:'Gold set',detail:'Gold',image:'/theme/brand/aytal-mark.png',quantity:a,max:4,lineTotal:2999*a-off-50},{key:'woo-variation-b',name:'Accessory',detail:'Large',image:'/theme/brand/aytal-mark.png',quantity:1,max:1,lineTotal:300}],subtotal:sub,packSavings:off,discount:50,fees:[],tax:0,shipping:0,total:sub-off-50}}
 const server=http.createServer(async(req,res)=>{const u=new URL(req.url,'http://localhost'),p=u.pathname,home='http://'+req.headers.host;
  if(p==='/activity')return send(res,200,'application/json',JSON.stringify({viewers:0,sold:0}));
@@ -41,7 +41,7 @@ async function run(){const parser=new (require(path.join(t,'php-parser')))({pars
   const [a,b]=parts;let d=0;for(let i=0;i<a.img.data.length;i+=4){if(Math.max(...[0,1,2].map(n=>Math.abs(a.img.data[i+n]-b.img.data[i+n])))>24)d++}
   console.log(mode,name,'reference',JSON.stringify(a.coords),'restored',JSON.stringify(b.coords),'pixels differing >24:',(100*d/(width*height)).toFixed(2)+'%');
   if(name==='home'){await page.getByRole('button',{name:'Next slide'}).click();assert(await page.locator('.hero-selectors button').nth(1).getAttribute('aria-current')==='true')}
-  else{await page.getByRole('button',{name:'Next product photo'}).click();assert(await page.locator('.pdp-thumbs button').nth(1).getAttribute('aria-pressed')==='true');await page.locator('.pack-card').nth(1).click();await page.locator('#buy-cod').click();await page.locator('.cod-dialog[open]').waitFor();assert.equal(await page.locator('dd.cod-total').innerText(),'Rs 5,798');await page.locator('.cod-qty button').first().click();assert.equal(await page.locator('dd.cod-total').innerText(),'Rs 2,999');await page.keyboard.press('Escape');await page.locator('.cod-dialog[open]').waitFor({state:'detached'});assert(new URL(page.url()).pathname==='/products/gold-set')}
+  else{await page.getByRole('button',{name:'Next product photo'}).click();assert(await page.locator('.pdp-thumbs button').nth(1).getAttribute('aria-pressed')==='true');await page.locator('.pack-card').nth(1).click();await page.locator('#buy-cod').click();await page.locator('.cod-dialog[open]').waitFor();assert.equal(await page.locator('dd.cod-total').innerText(),'Rs 5,500');await page.locator('.cod-qty button').first().click();assert.equal(await page.locator('dd.cod-total').innerText(),'Rs 2,999');await page.keyboard.press('Escape');await page.locator('.cod-dialog[open]').waitFor({state:'detached'});assert(new URL(page.url()).pathname==='/products/gold-set')}
  }await page.close()}
  const pg=await browser.newPage();pg.on('pageerror',e=>errors.push(e.message));
  const content=require(path.join(root,'lib/aytal-content.json'));
@@ -52,7 +52,7 @@ async function run(){const parser=new (require(path.join(t,'php-parser')))({pars
  const fieldNames=()=>pg.locator('.cod-form input').evaluateAll(xs=>xs.map(x=>[x.name,x.required]));
  const fields=[['name',true],['address',true],['phone',true],['city',true],['email',false]];
  await pg.goto(base+'/checkout?items=silver-single%3A1');await pg.reload();assert.deepEqual(await fieldNames(),fields);assert.equal(await pg.locator('dd.cod-total').innerText(),'Rs 2,199');
- await pg.goto(base+'/cart');await pg.getByRole('link',{name:'Proceed to checkout'}).click();assert.deepEqual(await fieldNames(),fields);assert.equal(await pg.locator('dd.cod-total').innerText(),'Rs 6,048');await pg.getByRole('button',{name:'Decrease Gold set quantity'}).click();await pg.getByRole('button',{name:'Complete order — Rs 3,249'}).waitFor();await pg.reload();assert.equal(await pg.locator('dd.cod-total').innerText(),'Rs 3,249');assert.equal(await pg.locator('.cod-item').count(),2);assert.equal(await pg.locator('.cod-form input[type=checkbox]').count(),0);
+ await pg.goto(base+'/cart');await pg.getByRole('link',{name:'Proceed to checkout'}).click();assert.deepEqual(await fieldNames(),fields);assert.equal(await pg.locator('dd.cod-total').innerText(),'Rs 5,750');await pg.getByRole('button',{name:'Decrease Gold set quantity'}).click();await pg.getByRole('button',{name:'Complete order — Rs 3,249'}).waitFor();await pg.reload();assert.equal(await pg.locator('dd.cod-total').innerText(),'Rs 3,249');assert.equal(await pg.locator('.cod-item').count(),2);assert.equal(await pg.locator('.cod-form input[type=checkbox]').count(),0);
  for(const [name,v] of Object.entries({name:'QA Example',address:'Example street',phone:'03000000000',city:'Lahore'}))await pg.locator('[name='+name+']').fill(v);
  await pg.locator('.cod-submit').click();await pg.waitForURL(base+'/receipt');assert.equal(received.at(-2)[1].mode,'prepare');assert.equal(received.at(-1)[1]['woocommerce-process-checkout-nonce'],'cart-test');assert.equal(received.at(-1)[1].ao_total,'3249');
  const routes=[...new Set(['/',...paths,'/collections/all','/checkout','/receipt'])];

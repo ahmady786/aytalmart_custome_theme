@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {cookies} from 'next/headers'
 import ShopImage from '@/components/shop/ShopImage'
 import {checkoutLink} from '@/lib/checkout-link'
-import {money,productFor} from '@/lib/catalog'
+import {money,productFor,standOptionLabel} from '@/lib/catalog'
 import {readReceipt,receiptCookie} from '@/lib/order-receipt-server'
 import './receipt.css'
 
@@ -29,10 +29,10 @@ export default async function ReceiptPage({params}:{params:{ref:string}}){
       <p>Thank you, {customer.name}. We’ve received your order and will confirm it before dispatch.</p>
       <time dateTime={order.createdAt}>{date.format(placed)} at {time.format(placed)} PKT</time></section>
     <section className="receipt-card" aria-label="Items and totals">
-      {items.map(i=><div className="receipt-item" key={i.sku}>
-        <div className="receipt-thumb">{productFor(i.sku)&&<ShopImage asset={i.sku+'-photo'} sizes="58px" maxWidth={192} alt=""/>}<span aria-label={'Quantity '+i.quantity}>{i.quantity}</span></div>
-        <div><strong>{i.name}</strong><small>{i.finish} / {i.sku.endsWith('-set')?'With janamaz stand':'Single stand'}</small></div>
-        <b>{money(i.lineTotal??i.unitPrice*i.quantity)}</b></div>)}
+      {items.map(i=>{const product=productFor(i.sku);return <div className="receipt-item" key={i.sku}>
+        <div className="receipt-thumb">{product&&<ShopImage asset={i.sku+'-photo'} sizes="58px" maxWidth={192} alt=""/>}<span aria-label={'Quantity '+i.quantity}>{i.quantity}</span></div>
+        <div><strong>{i.name}</strong><small>{[i.finish,product&&standOptionLabel[product.kind]].filter(Boolean).join(' / ')}</small></div>
+        <b>{money(i.lineTotal??i.unitPrice*i.quantity)}</b></div>})}
       <dl className="receipt-totals"><dt>Subtotal</dt><dd>{money(subtotal+saving)}</dd>
         {saving>0&&<><dt>Multi-buy savings</dt><dd>−{money(saving)}</dd></>}
         <dt>Shipping</dt><dd>Free</dd><dt className="grand">Total</dt><dd className="grand"><small>PKR</small> {money(subtotal)}</dd></dl>

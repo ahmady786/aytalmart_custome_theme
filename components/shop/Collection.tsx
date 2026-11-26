@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import ShopImage from './ShopImage'
-import { finishes, kinds, money, products, type Kind, type Product } from '@/lib/catalog'
+import { finishes, standOptionLabel, money, products, type Kind, type Product } from '@/lib/catalog'
 export function ProductCard({p,badge}:{p:Product;badge?:string}){
   return <Link prefetch={false} className="sku-card" href={'/products/'+p.sku}>
     <div className="sku-art studio-window"><ShopImage asset={p.sku} alt={p.finish+' '+p.name+' studio view'} sizes="(max-width: 900px) 45vw, (max-width:1536px) 22vw, 330px"/></div>
@@ -21,6 +21,6 @@ export function Filters({kind,finish}:{kind?:Kind;finish?:string}) {
     return '/collection'+(q.size?'?'+q:'')
   }
   return <div className="filters"><nav aria-label="Filter by product">
-    {[undefined,'set','single'].map(k=><Link prefetch={false} key={k||'all'} aria-current={kind===k?'true':undefined} href={href(k,finish)}>{!k?'All stands':k==='set'?'Full sets':kinds.single.name+' only'}</Link>)}
+    {([undefined,'set','single'] as const).map(k=><Link prefetch={false} key={k||'all'} aria-current={kind===k?'true':undefined} href={href(k,finish)}>{!k?'All stands':standOptionLabel[k]}</Link>)}
   </nav><nav aria-label="Filter by finish">{[undefined,...finishes].map(f=><Link prefetch={false} key={f||'all'} aria-current={finish===f?'true':undefined} href={href(kind,f)}>{f||'All finishes'}</Link>)}</nav></div>
 }

@@ -1,6 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 function am_stand($p) { return $p && $p->is_type('simple') && 'yes' === $p->get_meta('_aytal_stand'); }
+if(!function_exists('aytal_rates'))require_once __DIR__.'/stand-prices.php';
 function am_valid_pack_request() {
 	return isset($_POST['aytal_pack'],$_POST['add-to-cart']) && in_array((string)wp_unslash($_POST['aytal_pack']),array('1','2'),true);
 }
@@ -9,7 +10,7 @@ add_action('woocommerce_before_add_to_cart_button',static function(){
 	if (!am_stand($product)) return;
 	$max=$product->get_max_purchase_quantity(); $price=(float)$product->get_price();
 	echo '<fieldset class="am-packs"><legend>Choose your offer</legend><label><input type="radio" name="aytal_pack" value="1" checked> Buy 1 · '.wp_kses_post(wc_price($price)).'</label>';
-	if ($max<0 || $max>=2) echo '<label><input type="radio" name="aytal_pack" value="2"> Buy 2 · '.wp_kses_post(wc_price(max(0,$price*2-200))).' · Save Rs 200</label>';
+	if ($max<0 || $max>=2) echo '<label><input type="radio" name="aytal_pack" value="2"> Buy 2 · '.wp_kses_post(wc_price(aytal_rates()[aytal_rate_kind($product)]['pair']??($price*2))).'</label>';
 	echo '</fieldset>';
 });
 add_filter('woocommerce_add_to_cart_quantity',static function($qty,$id){
@@ -19,13 +20,6 @@ add_filter('woocommerce_add_to_cart_redirect',static function($url,$product){
 	return $product && am_stand($product) && am_valid_pack_request() ? wc_get_checkout_url() : $url;
 },10,2);
 add_filter('woocommerce_product_single_add_to_cart_text',static function($text,$p){return am_stand($p)?'Buy with Cash on Delivery':$text;},10,2);
-add_action('woocommerce_before_calculate_totals',static function($cart){
-	foreach($cart->get_cart() as $item){
-		$p=$item['data']; $n=(int)$item['quantity']; if($n<1||!am_stand($p))continue;
-		$original=wc_get_product($p->get_id()); if(!$original)continue;
-		$base=(float)$original->get_price(); $p->set_price(max(0,$base*$n-200*intdiv($n,2))/$n);
-	}
-});
 add_action('woocommerce_single_product_summary',static function(){
 	global $product;
 	if(!am_stand($product))return;
@@ -36,7 +30,7 @@ add_action('woocommerce_single_product_summary',static function(){
 		foreach($choices as $c){
 			$sku='Finish'===$group?strtolower($c).'-'.$kind:strtolower($finish).'-'.$c;
 			$id=wc_get_product_id_by_sku($sku);if(!$id || 'publish'!==get_post_status($id))continue;
-			$name='set'===$c?'With Janamaz stand':('single'===$c?'Quran stand only':$c);
+			$name='set'===$c?'Quran & Janamaz stand':('single'===$c?'Only Quran stand':$c);
 			echo '<a '.($id===$product->get_id()?'aria-current="true" ':'').'href="'.esc_url(get_permalink($id)).'">'.esc_html($name).'</a>';
 		} echo '</div>';
 	} echo '</div>';

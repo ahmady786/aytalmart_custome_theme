@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { mkdir, readFile, writeFile, link, unlink } from 'node:fs/promises'
 import path from 'node:path'
 import { randomUUID } from 'node:crypto'
-import { offerPrice, productFor, totals, validLines } from '@/lib/catalog'
+import { priceLines, productFor, totals, validLines } from '@/lib/catalog'
 import {createReceiptGrant,orderDir,receiptCookie,receiptLifetime} from '@/lib/order-receipt-server'
 export const runtime='nodejs'
 const fields=['name','phone','address','city'] as const
@@ -27,9 +27,10 @@ export async function POST(req:Request){
     if(typeof email!=='string'||email.length>254||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))return fail('Enter a valid email address or leave it blank.',400)
     customer.email=email.trim()
   }
-  const lines=input.items.map((line:{sku:string;quantity:number})=>{
+  const values=priceLines(input.items)
+  const lines=input.items.map((line:{sku:string;quantity:number},i:number)=>{
     const p=productFor(line.sku)!
-    const offer=offerPrice(p,line.quantity)
+    const offer=values[i]
     return {sku:p.sku,name:p.name,finish:p.finish,quantity:line.quantity,unitPrice:p.price,original:p.original,packSavings:offer.saving,lineTotal:offer.total}
   })
   const subtotal=totals(input.items).sale

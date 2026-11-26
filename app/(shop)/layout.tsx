@@ -11,6 +11,7 @@ import './store-chrome.css'
 import './product-display.css'
 import './cod-checkout.css'
 import './customer-care.css'
+import './shop-cart.css'
 export const viewport: Viewport = { themeColor: '#322419' }
 export const metadata: Metadata = {
   metadataBase:new URL(siteOrigin),

@@ -85,7 +85,7 @@ export default function HeroCarousel() {
         }}>
         <Link prefetch={false} href={href} className="hero-photo" style={{'--art-ratio':ratio} as CSSProperties}>
           {wing('left')}
-          <span className="hero-artwork"><ShopImage asset={art} mobileAsset={art.replace('hero-','mobile-hero-')} sizes={sizes} eager alt={label + ' in Gold, White, Silver and Black. ' + price + '. ' + shopLabel + '.'}/></span>
+          <span className="hero-artwork"><ShopImage asset={art} mobileAsset={art.replace('hero-','mobile-hero-')} sizes={sizes} eager alt={label + ' in Gold, White, Silver and Black. ' + price + '. ' + shopLabel + '.'}/>{kind==='set'&&<span aria-hidden="true" className={'hero-live-price '+(index===2?'gallery-price':'collection-price')}><del>{money(kinds.set.original)}</del><b>Save {money(kinds.set.original-kinds.set.price)}</b></span>}</span>
           {wing('right')}
         </Link>
       </div>

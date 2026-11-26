@@ -1,11 +1,18 @@
 // Builds a second, reversible child theme from the approved sources. Never packages the project root.
 const fs=require('fs'),path=require('path'),root=path.resolve(__dirname,'..'),at=(...p)=>path.join(root,...p)
-const tools=at('tmp/aytal-parity-tools/node_modules'),esbuild=require(path.join(tools,'esbuild'))
+const tools=at('tmp/aytal-parity-tools/node_modules'),esbuild=require(require.resolve('esbuild',{paths:[tools,...require.resolve.paths('esbuild')]}))
+const pagesOnly=process.argv.includes('--github-pages')
 const dest=at('wordpress/aytal-original/dist'),ui=at('wordpress/original-src/platform.tsx'),src=at('wordpress/original-src'),read=f=>fs.readFileSync(f,'utf8')
 const entries=new Set(), files=new Set()
 const transform=(s,b,a)=>{if(!s.includes(b))throw Error('Approved source changed: '+b);return s.replace(b,a)}
 const srcRoute=f=>f.replaceAll('\\','/')
 const plugin={name:'wordpress-host-adapters',setup(b){
+ if(pagesOnly){
+  b.onLoad({filter:/[\\/]OrderFlow\.tsx$/},a=>({loader:'tsx',resolveDir:path.dirname(a.path),contents:`import {useBag} from './Bag';import {totals,money} from '@/lib/catalog';export default function PreviewOrder({selection}){const bag=useBag(),lines=selection??bag.items;return <section className="shop-section"><h2>Checkout preview</h2>{lines.length>0&&<p>Order total: <strong>{money(totals(lines).sale)}</strong></p>}<p>This is a theme preview. No orders, payments or customer details are collected.</p></section>}`}))
+  b.onLoad({filter:/[\\/]HelpForm\.tsx$/},()=>({loader:'tsx',contents:'export default function Help(){return <p>Contact forms and order tracking are available on the WordPress store, not in this preview.</p>}'}))
+  b.onLoad({filter:/[\\/]ProductActivity\.tsx$/},()=>({loader:'tsx',contents:'export default function Activity(){return null}'}))
+  b.onLoad({filter:/[\\/]CustomerAccount\.tsx$/},()=>({loader:'tsx',contents:'export default function Account(){return <section className="shop-section"><h1>My Account</h1><p>This public preview does not accept sign-ins or display customer records.</p></section>}'}))
+ }
  b.onResolve({filter:/^next\/link$|^next\/navigation$/},()=>({path:ui}))
  b.onResolve({filter:/^next\/image$/},()=>({path:'image',namespace:'wp'}))
  b.onLoad({filter:/.*/,namespace:'wp'},()=>({contents:'export {BrandImage as default} from '+JSON.stringify(ui),resolveDir:src,loader:'ts'}))
@@ -16,6 +23,13 @@ const plugin={name:'wordpress-host-adapters',setup(b){
   files.add(p.slice(srcRoute(root).length+1));const use='import {cfg as hostData,resolveUrl,submitWoo,help as sendHelp} from '+JSON.stringify(ui)+';\n';
   if(p.endsWith('/lib/catalog.ts')){
    s=s.replace(/export const products = [\s\S]*?export type Product =/,'export const products = hostData.catalog.slice().sort((a,b)=>Number(a.kind==="single")-Number(b.kind==="single"));for(const k of ["set","single"]){const ref=products.find(p=>p.kind===k&&p.finish==="Gold")||products.find(p=>p.kind===k);if(ref)Object.assign(kinds[k],{price:ref.price,original:ref.original})} export type Product =')
+  }else if(p.endsWith('/HeroCarousel.tsx')){
+   s=transform(s,"{kind==='set'&&<span aria-hidden", "{!hostData.images[art]&&kind==='set'&&<span aria-hidden")
+  }else if(p.endsWith('/Bag.tsx')){
+   s='import {drawerCart} from '+JSON.stringify(ui)+';\n'+s;
+   s=transform(s,'<ShopCartProvider items=','<ShopCartProvider transport={drawerCart} items=')
+   s=transform(s,'const stored: unknown','if(drawerCart){setReady(true);return}const stored: unknown')
+   s=transform(s,'if (ready) {','if (ready&&!drawerCart) {')
   }else if(p.endsWith('/ShopImage.tsx')){
    s=transform(s,"const prefix='/shop/optimized/'","const prefix=hostData.base+'/shop/optimized/'");
    s=transform(s,'const mobileSources=portrait&&','const custom=mobileAsset&&hostData.images[mobileAsset];const mobileSources=custom?<source media={phoneMedia} width={custom.width} height={custom.height} sizes="(max-width:540px) 100vw, 540px" srcSet={custom.srcset||custom.url}/>:portrait&&')
@@ -36,6 +50,7 @@ const plugin={name:'wordpress-host-adapters',setup(b){
    s=transform(s,'[p.sku,other.sku]','[p.sku,other?.sku].filter(Boolean)')
    s=transform(s,'const pair=[p,other],','if(!other)return null;const pair=[p,other],')
   }else if(p.endsWith('/ProductDetail.tsx')){
+   s=transform(s,'disabled={shopCart.busy}','disabled={shopCart.busy||p.available===false}')
    s=transform(s,'<button id="buy-cod"','<button disabled={p.available===false} id="buy-cod"')
    s=transform(s,'Buy with Cash on Delivery</span>','{p.available===false?"Out of stock":"Buy with Cash on Delivery"}</span>')
   }else if(p.endsWith('/MostBought.tsx')){
@@ -55,11 +70,20 @@ const plugin={name:'wordpress-host-adapters',setup(b){
  });
 }}
 async function main(){
+ if(pagesOnly){
+  const output=at('tmp/pages-export');
+  if(fs.existsSync(output))throw Error('Output exists; use a clean workspace or archive the previous output first.')
+  fs.mkdirSync(path.join(output,'theme'),{recursive:true})
+  await esbuild.build({entryPoints:[at('wordpress/original-src/entry.tsx')],bundle:true,minify:true,jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'},target:['es2020'],outfile:path.join(output,'theme/store.js'),plugins:[plugin],tsconfig:at('tsconfig.json')})
+  require('./export-github-pages.cjs')(output);return
+ }
+ for(const theme of ['aytal-original','aytal-mart'])fs.copyFileSync(at('lib/stand-rates.json'),at('wordpress',theme,'stand-rates.json'))
+ fs.copyFileSync(at('wordpress/aytal-original/stand-prices.php'),at('wordpress/aytal-mart/stand-prices.php'))
  fs.mkdirSync(dest,{recursive:true})
  await esbuild.build({entryPoints:[at('wordpress/original-src/entry.tsx')],bundle:true,minify:true,jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'},target:['es2020'],outfile:path.join(dest,'store.js'),plugins:[plugin],tsconfig:at('tsconfig.json')})
- const shop=at('app/(shop)'),css=['shop.css','store-chrome.css','product-display.css','cod-checkout.css','products/[sku]/buy-panel.css','products/[sku]/reviews.css','order-success/[ref]/receipt.css','customer-care.css'].map(f=>read(path.join(shop,f))).join('\n')
+ const shop=at('app/(shop)'),css=['shop.css','store-chrome.css','product-display.css','cod-checkout.css','products/[sku]/buy-panel.css','products/[sku]/reviews.css','order-success/[ref]/receipt.css','customer-care.css','shop-cart.css'].map(f=>read(path.join(shop,f))).join('\n')
  const out=await require('postcss')([require('tailwindcss')({content:[{raw:'',extension:'html'}],corePlugins:{preflight:true}}),require('autoprefixer')]).process(css,{from:undefined})
- fs.writeFileSync(path.join(dest,'store.css'),out.css+'\n.ao-terms{display:block;font-size:12px;margin:.7rem 0}.ao-terms a{text-decoration:underline}.ao-original-store{background:#fcf7ed}.ao-original-store .prayer-shop a:not(.wp-element-button){color:inherit}body.ao-original-store{font-family:Inter,"Segoe UI",sans-serif;}')
+ fs.writeFileSync(path.join(dest,'store.css'),out.css+'\n.ao-terms{display:block;font-size:12px;margin:.7rem 0}.ao-terms a{text-decoration:underline}.ao-original-store{background:#fcf7ed}:where(.ao-original-store) .prayer-shop a:where(:not(.wp-element-button)){color:inherit}body.ao-original-store{font-family:Inter,"Segoe UI",sans-serif;}')
  fs.writeFileSync(path.join(dest,'hero-shell.html'),await require('./build-hero-shell.cjs')(esbuild,root))
  const cp=(from,to)=>{fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(from,to)}
  const manifest={...require(at('lib/shop-image-manifest.json')),...require(at('lib/shop-mobile-heroes.json'))};for(const e of Object.values(manifest))for(const f of [...e.webp,...e.avif])cp(at('public/shop/optimized',f),path.join(dest,'shop/optimized',f))

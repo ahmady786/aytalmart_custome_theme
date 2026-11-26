@@ -3,6 +3,10 @@ defined('ABSPATH') || exit;
 require_once __DIR__.'/store-data.php';
 require_once __DIR__.'/orders.php';
 require_once __DIR__.'/cart-checkout.php';
+require_once __DIR__.'/buy-now.php';
+require_once __DIR__.'/customer-account.php';
+if(!function_exists('aytal_rates'))require_once __DIR__.'/stand-prices.php';
+require_once __DIR__.'/whatsapp.php';
 function ao_phone_slides(){return array('01-complete-sets'=>'Complete sets','02-quran-stands'=>'Single stands','03-golden-gallery'=>'Four finishes');}
 add_action('customize_register',static function($customizer){
 	$customizer->add_section('ao_mobile_hero',array('title'=>'AYTAL MART: mobile hero images','description'=>'Optional portrait photos for phones. Desktop banners stay unchanged.'));
@@ -32,13 +36,15 @@ function ao_context(){
 	if(!function_exists('is_woocommerce')||is_admin()||is_feed()||wp_doing_ajax()||is_preview()||is_customize_preview())return false;
 	$v=trim((string)get_query_var('ao_view'),'/');
 	if($v && !preg_match('~^(guide|blogs/news|collections(?:/[a-z0-9-]+)?|products/[a-z0-9-]+)$~D',$v))return false;
-	$restricted=is_product()||is_shop()||is_product_taxonomy()||is_checkout()||is_cart()||$v;
+	$restricted=is_product()||is_shop()||is_product_taxonomy()||is_checkout()||is_cart()||is_account_page()||$v;
 	// Do not expose preview-only shop pages through virtual routes.
 	if('yes'===get_option('woocommerce_coming_soon')&&!current_user_can('manage_woocommerce')&&($restricted||'yes'!==get_option('woocommerce_store_pages_only')))return false;
 	if(is_front_page()&&!$v)return '/';
 	if($v)return '/'.$v;
 	if(is_order_received_page())return ao_receipt() ? '/receipt' : false;
+	if(is_account_page())return '/my-account';
 	if(is_wc_endpoint_url())return false;
+	if(is_cart())return '/cart';
 	if(is_checkout())return '/checkout';
 	if(is_shop())return '/collection';
 	if(is_product_category())return '/collections/'.get_queried_object()->slug;
@@ -63,8 +69,8 @@ add_filter('pre_get_document_title',static function($title){
 	$v=get_query_var('ao_view');return isset($labels[$v])?$labels[$v].' | AYTAL MART':$title;
 });
 add_action('wp_enqueue_scripts',static function(){
-	if(!ao_context()){wp_enqueue_style('ao-native-fallback',get_template_directory_uri().'/style.css',array(),'1.0.0');wp_enqueue_style('ao-native-chrome',get_stylesheet_directory_uri().'/native-chrome.css',array('ao-native-fallback'),wp_get_theme()->get('Version'));return;}
-	foreach(array('aytal-store','global-styles','wp-block-library','wp-block-library-theme','classic-theme-styles','woocommerce-layout','woocommerce-general','woocommerce-smallscreen','wc-blocks-style','core-block-supports','wp-emoji-styles') as $h)wp_dequeue_style($h);
+	if(!ao_context()){wp_enqueue_style('ao-native-fallback',get_template_directory_uri().'/style.css',array(),wp_get_theme(get_template())->get('Version'));wp_enqueue_style('ao-native-chrome',get_stylesheet_directory_uri().'/native-chrome.css',array('ao-native-fallback'),wp_get_theme()->get('Version'));return;}
+	foreach(array('aytal-store','global-styles','wp-block-library','wp-block-library-theme','classic-theme-styles','woocommerce-layout','woocommerce-general','woocommerce-smallscreen','wc-blocks-style','core-block-supports','wp-emoji-styles') as $h){if(is_account_page()&&strpos($h,'woocommerce-')===0)continue;wp_dequeue_style($h);}
 	wp_dequeue_script('aytal-store'); wp_enqueue_style('ao-original',get_stylesheet_directory_uri().'/dist/store.css',array(),wp_get_theme()->get('Version'));
 },999);
 add_action('admin_notices',static function(){if(!function_exists('WC'))echo '<div class="notice notice-error"><p>Activate WooCommerce to use the AYTAL storefront.</p></div>';});

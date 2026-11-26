@@ -1,7 +1,7 @@
 'use client'
-import {useRef,useState,type FormEvent} from 'react'
+import {useEffect,useRef,useState,type FormEvent} from 'react'
 import Link from 'next/link'
-import {money,offerPrice,productFor,totals,type CartLine} from '@/lib/catalog'
+import {money,priceLines,productFor,standOptionLabel,totals,type CartLine} from '@/lib/catalog'
 import {brand} from '@/lib/shop-brand'
 import {checkoutLink} from '@/lib/checkout-link'
 import ShopImage from './ShopImage'
@@ -13,12 +13,15 @@ export default function OrderFlow({selection,cart}:{selection?:CartLine[];cart?:
   // Old bookmarked checkouts may still have saved items. A Buy click never uses them.
   const saved=useBag(),[direct,setDirect]=useState(selection??[])
   const [quote,setQuote]=useState(cart?.quote)
+  useEffect(()=>{if(!cart)return;const sync=(e:Event)=>setQuote((e as CustomEvent<CartQuote>).detail)
+    window.addEventListener('ao-cart-updated',sync);return()=>window.removeEventListener('ao-cart-updated',sync)},[cart])
   const items=cart?[]:selection===undefined?saved.items:direct
   const [busy,setBusy]=useState(false),[error,setError]=useState('')
   const sending=useRef(false),retry=useRef({signature:'',id:''})
   const amount=quote?{sale:quote.total,packSavings:quote.packSavings}:totals(items)
-  const rows=quote?quote.lines.map(l=>({...l,asset:'',label:l.name})):items.map(({sku,quantity})=>{
-    const p=productFor(sku)!;return {key:sku,quantity,max:20,name:p.name,label:p.finish+' '+p.name,detail:p.finish+' · '+(p.kind==='set'?'With janamaz stand':'Single stand'),asset:sku+'-photo',image:'',lineTotal:offerPrice(p,quantity).total}
+  const values=priceLines(items)
+  const rows=quote?quote.lines.map(l=>({...l,asset:'',label:l.name})):items.map(({sku,quantity},i)=>{
+    const p=productFor(sku)!;return {key:sku,quantity,max:20,name:p.name,label:p.finish+' '+p.name,detail:p.finish+' · '+standOptionLabel[p.kind],asset:sku+'-photo',image:'',lineTotal:values[i].total}
   })
   const shipping=quote?.shipping?money(quote.shipping):'Free'
   const [adjusting,setAdjusting]=useState(false)

@@ -43,7 +43,7 @@ function am_brand(){
 function am_product($sku,$d){
 	if(wc_get_product_id_by_sku($sku))return;
 	$row=$d['catalog'][$sku];$p=new WC_Product_Simple();$p->set_name($row['name']);$p->set_slug($sku);$p->set_sku($sku);
-	$p->set_regular_price('4000');$p->set_sale_price((string)$row['price']);$p->set_description(wp_kses_post($row['description']));$p->set_short_description($row['summary']);
+	$p->set_regular_price((string)aytal_rates()[$row['kind']]['original']);$p->set_sale_price((string)$row['price']);$p->set_description(wp_kses_post($row['description']));$p->set_short_description($row['summary']);
 	$p->set_status('publish');$p->set_category_ids(array(am_term('islamic-collection','Islamic Collection'),am_term($row['kind']==='set'?'complete-sets':'quran-stands',$row['kind']==='set'?'Complete sets':'Single Quran stands')));
 	$p->update_meta_data('_aytal_stand','yes');$p->update_meta_data('_aytal_kind',$row['kind']);$p->update_meta_data('_aytal_finish',$row['finish']);
 	$g=array();foreach($row['media'] as $i=>$file){$img=am_media($file,$row['name'].' — '.($i===0?'studio view':($i===1?'original photograph':'additional view')));if(!$i)$p->set_image_id($img);else $g[]=$img;}

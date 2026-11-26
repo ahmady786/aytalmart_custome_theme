@@ -195,7 +195,7 @@ body{margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibili
 .kind-picker,.purchase-actions {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .kind-picker a {padding:10px 14px;border:1px solid var(--rule);border-radius:4px}
 .kind-picker small,.purchase-row strong {display:block}
-.kind-picker a[aria-current],.bundle-picker button[aria-pressed=true] {background:#f4e6c9;border-color:var(--accent)}
+.kind-picker a[aria-current],.bundle-picker button[aria-pressed=true],.zoom-tools button[aria-pressed=true] {background:var(--ink);border-color:var(--ink);color:#fff}
 .purchase-row,.zoom-head,.zoom-tools {display:flex;align-items:center;justify-content:space-between;gap:12px}
 .purchase-row {margin:22px 0 12px}
 .purchase-row p {font-size:13px;text-align:right;color:var(--dim)}

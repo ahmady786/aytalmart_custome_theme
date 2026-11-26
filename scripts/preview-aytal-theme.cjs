@@ -3,10 +3,11 @@ const http=require('node:http'),fs=require('node:fs'),path=require('node:path')
 const root=path.resolve(__dirname,'..'),dist=path.join(root,'wordpress','aytal-original','dist')
 const snapshot=require('../lib/aytal-content.json'),port=Number(process.argv[2]||3210),home='http://127.0.0.1:'+port
 const kinds={set:['Quran & Janamaz Stand Set',2999],single:['Quran Stand',2199]}
-const catalog=Object.entries(kinds).flatMap(([kind,[name,price]])=>['Gold','White','Silver','Black'].map(finish=>({sku:finish.toLowerCase()+'-'+kind,kind,name,price,original:4000,finish,available:true,sales:0})))
+const catalog=Object.entries(kinds).flatMap(([kind,[name,price]])=>['Gold','White','Silver','Black'].map(finish=>({sku:finish.toLowerCase()+'-'+kind,kind,name,price,original:kind==='set'?3500:4000,finish,available:true,sales:0})))
 const pages=new Set(snapshot.pages.map(p=>p.slug))
 const valid=new Set(['/', '/collection','/collections','/collections/all','/guide','/blogs/news','/checkout',...Array.from(pages,s=>'/pages/'+s),...[...catalog.map(p=>p.sku),...snapshot.products.map(p=>p.slug)].map(s=>'/products/'+s),...snapshot.collections.map(p=>'/collections/'+p.slug)])
 const types={'.webp':'image/webp','.avif':'image/avif','.png':'image/png','.css':'text/css','.js':'text/javascript'}
+valid.add('/my-account');valid.add('/cart')
 const shell=fs.readFileSync(path.join(dist,'hero-shell.html'),'utf8').replaceAll('__AO_ASSETS__','/theme').replaceAll('__AO_SHOP__','/collection')
 const config={home,base:'/theme',urls:{'/bag':home+'/checkout'},catalog,images:{},frames:{},pages:[],categories:[],extra:[],boot:'/preview-only',help:'/preview-only',ajax:'/preview-only',checkout:'/preview-only',activity:'/activity'}
 const titles={'/':'AYTAL MART','/guide':'Stand guide','/collection':'Quran stands','/collections':'Collections','/checkout':'Cash on Delivery'}

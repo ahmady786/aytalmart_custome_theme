@@ -1,6 +1,7 @@
 'use client'
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { type CartLine, validLines } from '@/lib/catalog'
+import ShopCartProvider from './ShopCart'
 
 type Bag = { items: CartLine[]; ready: boolean; update: (sku: string, quantity: number) => void; clear: () => void }
 const Context = createContext<Bag | null>(null)
@@ -26,7 +27,7 @@ export function BagProvider({ children }: { children: ReactNode }) {
     if (index < 0) return [...current, { sku, quantity }]
     return current.map(item => item.sku === sku ? { sku, quantity } : item)
   })
-  return <Context.Provider value={{ items, ready, update, clear: () => setItems([]) }}>{children}</Context.Provider>
+  return <Context.Provider value={{ items, ready, update, clear: () => setItems([]) }}><ShopCartProvider items={items} update={update} ready={ready}>{children}</ShopCartProvider></Context.Provider>
 }
 export function useBag() {
   const bag = useContext(Context)

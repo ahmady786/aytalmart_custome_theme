@@ -22,19 +22,8 @@ add_action('wc_ajax_ao_activity',static function(){
 });
 function ao_prepare(){
 	ao_gate();check_ajax_referer('ao_store','nonce');
-	$lines=json_decode(wp_unslash($_POST['items']??''),true);
-	if(!is_array($lines)||!$lines||count($lines)>8)wp_send_json_error('Please select your stand.',400);
-	$wanted=array();foreach($lines as $line){if(!is_array($line)||!is_string($line['sku']??null))wp_send_json_error('Invalid selection.',400);
-		$id=wc_get_product_id_by_sku(sanitize_text_field($line['sku']));$p=wc_get_product($id);$q=filter_var($line['quantity']??0,FILTER_VALIDATE_INT);
-		if(!$p||!am_stand($p)||'publish'!==$p->get_status()||isset($wanted[$id])||$q<1||$q>20||!$p->is_purchasable()||!$p->is_in_stock()||!$p->has_enough_stock($q))wp_send_json_error('A selected stand is not available in that quantity.',409);
-		$wanted[$id]=$q;
-	}
-	$cart=WC()->cart;
-	// Do not silently discard products placed in an independent WooCommerce cart.
-	foreach($cart->get_cart() as $item)if(!am_stand($item['data']))wp_send_json_error('Your basket contains another item. Please use the regular checkout first.',409);
-	foreach($cart->get_cart() as $key=>$item){$id=$item['product_id'];if(isset($wanted[$id])){$cart->set_quantity($key,$wanted[$id],false);unset($wanted[$id]);}else{$cart->remove_cart_item($key);}}
-	foreach($wanted as $id=>$q)if(!$cart->add_to_cart($id,$q))wp_send_json_error('This stand could not be added.',409);
-	ao_finish_preparation($cart);
+	try{ao_fill_buy_cart(json_decode(wp_unslash($_POST['items']??''),true));}catch(Exception $e){wp_send_json_error($e->getMessage(),409);}
+	ao_finish_preparation(WC()->cart);
 }
 function ao_finish_preparation($cart){
 	WC()->customer->set_billing_country('PK');WC()->customer->set_shipping_country('PK');$cart->calculate_totals();
@@ -58,7 +47,7 @@ add_action('woocommerce_checkout_order_processed',static function($id){if(ao_dir
 function ao_receipt(){
 	if(!function_exists('WC')||!WC()->session)return null;
 	$id=absint(get_query_var('order-received'));$o=wc_get_order($id);if(!$o||(int)WC()->session->get('ao_recent_order')!==$id || !hash_equals($o->get_order_key(),wc_clean(wp_unslash($_GET['key']??'')))||$o->get_payment_method()!=='cod'||$o->has_status(array('failed','cancelled','refunded')))return null;
-	$items=array();foreach($o->get_items() as $i){$p=$i->get_product();$items[]=array('sku'=>$p&&$p->get_sku()?$p->get_sku():'item-'.$i->get_id(),'quantity'=>$i->get_quantity(),'name'=>$i->get_name(),'finish'=>$p?$p->get_meta('_aytal_finish'):'','lineTotal'=>(float)$i->get_total(),'packSavings'=>$p&&am_stand($p)?intdiv($i->get_quantity(),2)*200:0);}
+	$items=array();foreach($o->get_items() as $i){$p=$i->get_product();$items[]=array('sku'=>$p&&$p->get_sku()?$p->get_sku():'item-'.$i->get_id(),'quantity'=>$i->get_quantity(),'name'=>$i->get_name(),'finish'=>$p?$p->get_meta('_aytal_finish'):'','lineTotal'=>(float)$i->get_total(),'packSavings'=>(float)$i->get_meta('_aytal_pair_saving'));}
 	return array('ref'=>(string)$o->get_order_number(),'createdAt'=>$o->get_date_created()->date('c'),'subtotal'=>(float)$o->get_total(),'items'=>$items,'customer'=>array('name'=>$o->get_formatted_billing_full_name(),'address'=>$o->get_billing_address_1(),'city'=>$o->get_billing_city(),'email'=>$o->get_billing_email(),'phone'=>$o->get_billing_phone()));
 }
 add_action('init',static function(){register_post_type('ao_enquiry',array('label'=>'Store enquiries','public'=>false,'show_ui'=>true,'show_in_rest'=>false,'capabilities'=>array('edit_posts'=>'manage_woocommerce','edit_others_posts'=>'manage_woocommerce','read_private_posts'=>'manage_woocommerce','read_post'=>'manage_woocommerce','edit_post'=>'manage_woocommerce','delete_post'=>'manage_woocommerce'),'supports'=>array('title','editor')));});

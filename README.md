@@ -1,10 +1,10 @@
 # AYTAL MART custom theme
 
-Private backup of the AYTAL MART WordPress/WooCommerce theme, version **2.0.3**. The repository name intentionally uses `custome`.
+AYTAL MART WordPress/WooCommerce theme, version **2.0.6**. [Open the public design preview](https://ahmady786.github.io/aytalmart_custome_theme/). GitHub Pages does not accept orders, payments, sign-ins or shipping addresses.
 
 ## Restore to WordPress
 
-1. Download [the parent theme ZIP](wordpress/aytal-mart-upload.zip) and [the 2.0.3 child theme ZIP](wordpress/aytal-original-2.0.3.zip). Do not upload GitHub's "Download ZIP" as a theme.
+1. Download [the parent theme ZIP](wordpress/aytal-mart-upload.zip) and [the 2.0.6 child theme ZIP](wordpress/aytal-original-2.0.6.zip). Do not upload GitHub's "Download ZIP" as a theme.
 2. In WordPress, install and activate WooCommerce if it is not already active. Under **Appearance → Themes → Add Theme → Upload Theme**, install the parent first, then install and activate **AYTAL MART — Original Storefront** (the child).
 3. On an existing shop, keep its catalog, settings, and orders; do not run the parent starter import again. [Theme notes](wordpress/ORIGINAL-STOREFRONT.md) cover content editing and checkout.
 
@@ -20,4 +20,4 @@ The editable interface is under `app/(shop)` and `components/shop`; the WordPres
     npm install --prefix tmp/aytal-parity-tools --no-save --ignore-scripts esbuild@0.25.12 playwright-core php-parser pngjs
     npm run build:theme
 
-No automatic deployment is configured. Pushing to GitHub does not update Hostinger.
+To generate the GitHub Pages preview, run `node scripts/build-original-wp.cjs --github-pages` in a checkout with the build dependencies installed. Publish only the contents of `tmp/pages-export` to the `gh-pages` branch. Pushing the theme or preview to GitHub does not update Hostinger.

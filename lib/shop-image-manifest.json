@@ -35,7 +35,7 @@
  },
  "black-set": {
   "width": 1122,
-  "height": 1402,
+  "height": 1242,
   "widths": [
    96,
    192,
@@ -46,22 +46,22 @@
    1122
   ],
   "avif": [
-   "black-set-96-52034f093862.avif",
-   "black-set-192-ea6b103ddc82.avif",
-   "black-set-320-5f70869868b9.avif",
-   "black-set-400-a7c0fae68189.avif",
-   "black-set-640-7d74c0bc4f43.avif",
-   "black-set-800-b576c8f41432.avif",
-   "black-set-1122-5066c62f198c.avif"
+   "black-set-96-cd587efa245b.avif",
+   "black-set-192-7195ce9b8f82.avif",
+   "black-set-320-c040eb0e81cb.avif",
+   "black-set-400-7921f9ba5ad2.avif",
+   "black-set-640-51f0c1a0156d.avif",
+   "black-set-800-7e4c9a3e9ecd.avif",
+   "black-set-1122-e749281fdf4f.avif"
   ],
   "webp": [
-   "black-set-96-922e49325ad7.webp",
-   "black-set-192-15f61da7b450.webp",
-   "black-set-320-17bdc48b7401.webp",
-   "black-set-400-a717a00793d8.webp",
-   "black-set-640-14ef682e5c39.webp",
-   "black-set-800-fc128660dcd1.webp",
-   "black-set-1122-c2f2efe9e0e9.webp"
+   "black-set-96-aa736a04394d.webp",
+   "black-set-192-9f2da833d9ca.webp",
+   "black-set-320-f82684feb017.webp",
+   "black-set-400-75f992e81ce9.webp",
+   "black-set-640-767df7616df1.webp",
+   "black-set-800-8857d6600a68.webp",
+   "black-set-1122-5ced7bec606d.webp"
   ]
  },
  "black-single-photo": {
@@ -165,7 +165,7 @@
  },
  "gold-set": {
   "width": 1122,
-  "height": 1402,
+  "height": 1242,
   "widths": [
    96,
    192,
@@ -176,22 +176,22 @@
    1122
   ],
   "avif": [
-   "gold-set-96-f2f35f132b06.avif",
-   "gold-set-192-36ab9ffc5784.avif",
-   "gold-set-320-9d9f4d9475fd.avif",
-   "gold-set-400-dffe8a756185.avif",
-   "gold-set-640-cdf32faa1d10.avif",
-   "gold-set-800-327c10379e80.avif",
-   "gold-set-1122-2368b40382c7.avif"
+   "gold-set-96-52d31726a545.avif",
+   "gold-set-192-741a225ed6ef.avif",
+   "gold-set-320-15f135a136ae.avif",
+   "gold-set-400-c3a9b77ad692.avif",
+   "gold-set-640-57071621c818.avif",
+   "gold-set-800-5e9f172787b0.avif",
+   "gold-set-1122-ccf045dfe726.avif"
   ],
   "webp": [
-   "gold-set-96-19c25116a4c1.webp",
-   "gold-set-192-6062be8fde57.webp",
-   "gold-set-320-5c687b4dc01c.webp",
-   "gold-set-400-cde0547ef09a.webp",
-   "gold-set-640-9c4675c9996c.webp",
-   "gold-set-800-5f36eea7f657.webp",
-   "gold-set-1122-d8a63b822b2a.webp"
+   "gold-set-96-53cf54541212.webp",
+   "gold-set-192-6ea31af004d6.webp",
+   "gold-set-320-301a9c47c723.webp",
+   "gold-set-400-e209fff59a31.webp",
+   "gold-set-640-d40322316326.webp",
+   "gold-set-800-bad65e218ec0.webp",
+   "gold-set-1122-858d3e80fe7c.webp"
   ]
  },
  "gold-single-photo": {
@@ -295,7 +295,7 @@
  },
  "silver-set": {
   "width": 1122,
-  "height": 1402,
+  "height": 1242,
   "widths": [
    96,
    192,
@@ -306,22 +306,22 @@
    1122
   ],
   "avif": [
-   "silver-set-96-0d3e4d4d0699.avif",
-   "silver-set-192-67ee730005ea.avif",
-   "silver-set-320-a9d716fd86b8.avif",
-   "silver-set-400-66f98e4784bf.avif",
-   "silver-set-640-f4aa15459e12.avif",
-   "silver-set-800-1a831ffbf59a.avif",
-   "silver-set-1122-e914feb0e11f.avif"
+   "silver-set-96-02f113a47e7a.avif",
+   "silver-set-192-df7c16c0ce4d.avif",
+   "silver-set-320-5089d159a73f.avif",
+   "silver-set-400-917e05d0c630.avif",
+   "silver-set-640-31e041e4b810.avif",
+   "silver-set-800-b698d88bdb9f.avif",
+   "silver-set-1122-323b28aa020a.avif"
   ],
   "webp": [
-   "silver-set-96-21d1833d86cc.webp",
-   "silver-set-192-098ded18db65.webp",
-   "silver-set-320-e7ecb511523a.webp",
-   "silver-set-400-22c55511c335.webp",
-   "silver-set-640-d3dc7b10238f.webp",
-   "silver-set-800-e0b5899aeda2.webp",
-   "silver-set-1122-4946bd4b8561.webp"
+   "silver-set-96-cd58763ad0e3.webp",
+   "silver-set-192-b3959ca0774c.webp",
+   "silver-set-320-34c29cbf61be.webp",
+   "silver-set-400-82cd0c0ed919.webp",
+   "silver-set-640-4271afbea7ca.webp",
+   "silver-set-800-19c3a355894c.webp",
+   "silver-set-1122-9094a6d36f49.webp"
   ]
  },
  "silver-single-photo": {
@@ -425,7 +425,7 @@
  },
  "white-set": {
   "width": 1122,
-  "height": 1402,
+  "height": 1242,
   "widths": [
    96,
    192,
@@ -436,22 +436,22 @@
    1122
   ],
   "avif": [
-   "white-set-96-ef8f10b41420.avif",
-   "white-set-192-0eda3aadc8f2.avif",
-   "white-set-320-e441dccebe05.avif",
-   "white-set-400-b41b86c5dc87.avif",
-   "white-set-640-849f13f47ee3.avif",
-   "white-set-800-e40a5a0c62e1.avif",
-   "white-set-1122-0dde9363c39c.avif"
+   "white-set-96-59015b706c73.avif",
+   "white-set-192-a15b5207e87c.avif",
+   "white-set-320-5108626216d1.avif",
+   "white-set-400-8b05c3a7c6bc.avif",
+   "white-set-640-10e888853846.avif",
+   "white-set-800-c71e38f4bdd4.avif",
+   "white-set-1122-c7e0d8d7fb7a.avif"
   ],
   "webp": [
-   "white-set-96-c2046b90b24a.webp",
-   "white-set-192-c8ad5217592c.webp",
-   "white-set-320-5563b2e5c672.webp",
-   "white-set-400-06232827fbf2.webp",
-   "white-set-640-a0359c1950c5.webp",
-   "white-set-800-b1906c82f039.webp",
-   "white-set-1122-8648da9f43c7.webp"
+   "white-set-96-e13a22311fa7.webp",
+   "white-set-192-34861ce5ca10.webp",
+   "white-set-320-9b2c1682ff11.webp",
+   "white-set-400-c25be65882c2.webp",
+   "white-set-640-5f228ea420df.webp",
+   "white-set-800-6c30e7eb8cf8.webp",
+   "white-set-1122-07361a2e6bdb.webp"
   ]
  },
  "white-single-photo": {

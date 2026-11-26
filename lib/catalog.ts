@@ -1,13 +1,15 @@
+import rates from './stand-rates.json'
 export const finishes = ['Gold', 'White', 'Silver', 'Black'] as const
 export type Finish = typeof finishes[number]
 export type Kind = 'set' | 'single'
+export const standOptionLabel: Record<Kind,string> = {set:'Quran & Janamaz stand',single:'Only Quran stand'}
 export type CartLine = { sku: string; quantity: number }
 export const swatches: Record<Finish, string> = {
   Gold: '#c59b4a', White: '#fbf7ec', Silver: '#a5a6a4', Black: '#292924',
 }
 export const kinds = {
-  set: { name: 'Quran & Janamaz Stand Set', price: 2999, original: 4000 },
-  single: { name: 'Quran Stand', price: 2199, original: 4000 },
+  set: { name: 'Quran & Janamaz Stand Set', ...rates.set },
+  single: { name: 'Quran Stand', ...rates.single },
 }
 export const products = (['set', 'single'] as const).flatMap(kind =>
   finishes.map(finish => ({ ...kinds[kind], sku: finish.toLowerCase() + '-' + kind, finish, kind })),
@@ -26,15 +28,24 @@ export function validLines(value: unknown): value is CartLine[] {
     return true
   })
 }
-// Only complete pairs of the same SKU qualify; an unpaired item stays at its sale price.
-export function offerPrice(product: Product, quantity: number) {
-  const saving = Math.floor(quantity / 2) * 200
-  return { saving, total: product.price * quantity - saving }
+// Any two finishes of the same kind make a pair. Allocate whole rupees; odd units
+// retain their own SKU price. Called by both the checkout display and order writer.
+export function priceLines(lines: CartLine[]){
+  const counts={set:0,single:0},used={set:0,single:0}
+  for(const l of lines)counts[productFor(l.sku)!.kind]+=l.quantity
+  return lines.map(l=>{
+    const p=productFor(l.sku)!,k=p.kind,limit=counts[k]-counts[k]%2,pair=rates[k].pair
+    let total=0
+    for(let i=0;i<l.quantity;i++){const n=used[k]++;total+=n>=limit?p.price:n%2?Math.ceil(pair/2):Math.floor(pair/2)}
+    return {total,saving:Math.max(0,p.price*l.quantity-total)}
+  })
 }
+export function offerPrice(product:Product,quantity:number){return priceLines([{sku:product.sku,quantity}])[0]}
 export function totals(lines: CartLine[]) {
-  return lines.reduce((sum, line) => {
+  const amounts=priceLines(lines)
+  return lines.reduce((sum, line,i) => {
     const product = productFor(line.sku)!
-    const offer = offerPrice(product, line.quantity)
+    const offer = amounts[i]
     return {
       sale: sum.sale + offer.total,
       packSavings: sum.packSavings + offer.saving,
