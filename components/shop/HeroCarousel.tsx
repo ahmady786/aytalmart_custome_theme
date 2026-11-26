@@ -2,7 +2,7 @@
 
 import ShopImage from './ShopImage'
 import Link from 'next/link'
-import { useEffect, useRef, useState, type CSSProperties, type TouchEvent } from 'react'
+import { useEffect, useRef, useState, type TouchEvent } from 'react'
 import { kinds, money } from '@/lib/catalog'
 
 const slides = [
@@ -23,12 +23,8 @@ export default function HeroCarousel() {
   const href = '/collection?type=' + kind
   const price = money(kinds[kind].price)
   const shopLabel = kind === 'single' ? 'Shop Quran stands' : 'Shop complete sets'
-  const ratio = index === 2 ? 1920 / 1080 : 1920 / 940
-  // Same sizes on the artwork and decorative edges: the browser fetches one rendition.
-  const sizes = '(max-width: 700px) 100vw, min(90vw, '+Math.round(70*ratio)+'vh, '+Math.round(700*ratio)+'px)'
-  const wing = (side:'left'|'right') => <span className={'hero-wing wing-'+side} aria-hidden="true">
-    <ShopImage asset={art} mobileAsset={art.replace('hero-','mobile-hero-')} sizes={sizes} alt=""/>
-  </span>
+  const title = ['Quran & Janamaz Stand Sets','Wall-Mounted Quran Stands','One set. Four finishes.'][index]
+  const sizes = index===2?'(max-width:740px) 100vw, min(64vw, 960px)':'(min-aspect-ratio:2/1) and (max-height:760px) 77vw, min(100vw, 1520px)'
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -60,7 +56,7 @@ export default function HeroCarousel() {
     select(index + (dx < 0 ? 1 : -1))
   }
 
-  return <section className="shop-hero" aria-label="Prayer stand offers" aria-roledescription="carousel"
+  return <section className="shop-hero offer-hero" data-gallery={index===2?'true':'false'} aria-label="Prayer stand offers" aria-roledescription="carousel"
     onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
     onFocusCapture={e => { if (e.target.dataset.rotation !== 'true') setPlaying(false) }}
     onKeyDown={e => {
@@ -72,7 +68,6 @@ export default function HeroCarousel() {
       }
     }}>
     <h1 className="sr-only">Quran stands and Quran &amp; Janamaz stand sets</h1>
-    <div className="hero-phone-title"><span>{index===0?'Quran & Janamaz sets':index===1?'Wall-mounted Quran stands':'The four finishes'}</span></div>
       <div className="hero-stage" role="group" aria-roledescription="slide" aria-label={(index + 1) + ' of ' + labels.length + ': ' + labels[index]}
         onPointerDownCapture={() => { swallowClick.current = false }}
         onTouchStart={e => {
@@ -83,13 +78,13 @@ export default function HeroCarousel() {
           if (swallowClick.current && e.detail !== 0) { e.preventDefault(); e.stopPropagation() }
           swallowClick.current = false
         }}>
-        <Link prefetch={false} href={href} className="hero-photo" style={{'--art-ratio':ratio} as CSSProperties}>
-          {wing('left')}
-          <span className="hero-artwork"><ShopImage asset={art} mobileAsset={art.replace('hero-','mobile-hero-')} sizes={sizes} eager alt={label + ' in Gold, White, Silver and Black. ' + price + '. ' + shopLabel + '.'}/>{kind==='set'&&<span aria-hidden="true" className={'hero-live-price '+(index===2?'gallery-price':'collection-price')}><del>{money(kinds.set.original)}</del><b>Save {money(kinds.set.original-kinds.set.price)}</b></span>}</span>
-          {wing('right')}
+        <Link prefetch={false} href={href} className="hero-photo" aria-label={shopLabel+' — '+price}>
+          <span className="hero-heading"><small>{index===2?'The golden edit':'The finish collection'}</small><span>{title}</span></span>
+          <span className="hero-artwork"><ShopImage asset={art} mobileAsset={art.replace('hero-','mobile-hero-')} sizes={sizes} eager alt={label+' in Gold, White, Silver and Black'}/></span>
+          <span className="hero-deal"><span className="hero-values"><small>{kind==='set'?'Per complete set':'Per Quran stand'}</small><span><strong>{price}</strong> <del>{money(kinds[kind].original)}</del></span></span>
+            <span className="hero-cta">{shopLabel} <span aria-hidden="true">↗</span></span></span>
         </Link>
       </div>
-      <Link prefetch={false} href={href} className="hero-mobile-offer"><span>{shopLabel} →</span><strong>{price} {kinds[kind].original>kinds[kind].price&&<del>{money(kinds[kind].original)}</del>}</strong></Link>
       <div className="hero-controls" role="group" aria-label="Slide controls">
         <div className="hero-pager">
         <button className="hero-arrow" type="button" aria-label="Previous slide" onClick={() => select(index - 1)}>←</button>

@@ -23,8 +23,6 @@ const plugin={name:'wordpress-host-adapters',setup(b){
   files.add(p.slice(srcRoute(root).length+1));const use='import {cfg as hostData,resolveUrl,submitWoo,help as sendHelp} from '+JSON.stringify(ui)+';\n';
   if(p.endsWith('/lib/catalog.ts')){
    s=s.replace(/export const products = [\s\S]*?export type Product =/,'export const products = hostData.catalog.slice().sort((a,b)=>Number(a.kind==="single")-Number(b.kind==="single"));for(const k of ["set","single"]){const ref=products.find(p=>p.kind===k&&p.finish==="Gold")||products.find(p=>p.kind===k);if(ref)Object.assign(kinds[k],{price:ref.price,original:ref.original})} export type Product =')
-  }else if(p.endsWith('/HeroCarousel.tsx')){
-   s=transform(s,"{kind==='set'&&<span aria-hidden", "{!hostData.images[art]&&kind==='set'&&<span aria-hidden")
   }else if(p.endsWith('/Bag.tsx')){
    s='import {drawerCart} from '+JSON.stringify(ui)+';\n'+s;
    s=transform(s,'<ShopCartProvider items=','<ShopCartProvider transport={drawerCart} items=')
@@ -71,7 +69,7 @@ const plugin={name:'wordpress-host-adapters',setup(b){
 }}
 async function main(){
  if(pagesOnly){
-  const output=at('tmp/pages-export');
+  const output=at('tmp',process.env.AYTAL_PREVIEW_BUILD==='2.0.8'?'pages-export-2.0.8':'pages-export');
   if(fs.existsSync(output))throw Error('Output exists; use a clean workspace or archive the previous output first.')
   fs.mkdirSync(path.join(output,'theme'),{recursive:true})
   await esbuild.build({entryPoints:[at('wordpress/original-src/entry.tsx')],bundle:true,minify:true,jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'},target:['es2020'],outfile:path.join(output,'theme/store.js'),plugins:[plugin],tsconfig:at('tsconfig.json')})
@@ -81,13 +79,21 @@ async function main(){
  fs.copyFileSync(at('wordpress/aytal-original/stand-prices.php'),at('wordpress/aytal-mart/stand-prices.php'))
  fs.mkdirSync(dest,{recursive:true})
  await esbuild.build({entryPoints:[at('wordpress/original-src/entry.tsx')],bundle:true,minify:true,jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'},target:['es2020'],outfile:path.join(dest,'store.js'),plugins:[plugin],tsconfig:at('tsconfig.json')})
- const shop=at('app/(shop)'),css=['shop.css','store-chrome.css','product-display.css','cod-checkout.css','products/[sku]/buy-panel.css','products/[sku]/reviews.css','order-success/[ref]/receipt.css','customer-care.css','shop-cart.css'].map(f=>read(path.join(shop,f))).join('\n')
+ const shop=at('app/(shop)'),css=['shop.css','store-chrome.css','product-display.css','cod-checkout.css','products/[sku]/buy-panel.css','products/[sku]/reviews.css','order-success/[ref]/receipt.css','customer-care.css','shop-cart.css','hero-layout.css'].map(f=>read(path.join(shop,f))).join('\n')
  const out=await require('postcss')([require('tailwindcss')({content:[{raw:'',extension:'html'}],corePlugins:{preflight:true}}),require('autoprefixer')]).process(css,{from:undefined})
  fs.writeFileSync(path.join(dest,'store.css'),out.css+'\n.ao-terms{display:block;font-size:12px;margin:.7rem 0}.ao-terms a{text-decoration:underline}.ao-original-store{background:#fcf7ed}:where(.ao-original-store) .prayer-shop a:where(:not(.wp-element-button)){color:inherit}body.ao-original-store{font-family:Inter,"Segoe UI",sans-serif;}')
  fs.writeFileSync(path.join(dest,'hero-shell.html'),await require('./build-hero-shell.cjs')(esbuild,root))
  const cp=(from,to)=>{fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(from,to)}
  const manifest={...require(at('lib/shop-image-manifest.json')),...require(at('lib/shop-mobile-heroes.json'))};for(const e of Object.values(manifest))for(const f of [...e.webp,...e.avif])cp(at('public/shop/optimized',f),path.join(dest,'shop/optimized',f))
+ // The release must not ship superseded posters with old baked-in prices.
+ // Prune only generated, content-addressed assets whose digest still matches.
+ const active=new Set(Object.values(manifest).flatMap(e=>[...e.webp,...e.avif])),optim=path.join(dest,'shop/optimized');
+ for(const f of fs.readdirSync(optim)){
+  const part=f.match(/-([0-9a-f]{12})\.(avif|webp)$/);if(!part||active.has(f))continue;
+  const p=path.join(optim,f);if(require('node:crypto').createHash('sha256').update(fs.readFileSync(p)).digest('hex').startsWith(part[1]))fs.unlinkSync(p);
+ }
  const old=require(at('lib/aytal-content.json'));for(const [key,list] of [['slugs',old.products],['categories',old.collections]])fs.writeFileSync(path.join(dest,'legacy-'+key+'.json'),JSON.stringify(list.map(x=>x.slug)))
+ cp(at('lib/aytal-content.json'),path.join(dest,'legacy-content.json'))
  for(const f of fs.readdirSync(at('public/shop/angles')).filter(f=>/^\d+-(112|480|960)\.webp$/.test(f)))cp(at('public/shop/angles',f),path.join(dest,'shop/angles',f))
  for(const f of ['aytal-mart.png','aytal-mark.png'])cp(at('public/brand',f),path.join(dest,'brand',f))
  fs.writeFileSync(path.join(dest,'source-list.json'),JSON.stringify([...files].sort(),null,2));console.log(files.size,'approved source modules,',fs.statSync(path.join(dest,'store.js')).size,'JS bytes')

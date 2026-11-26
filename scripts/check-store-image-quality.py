@@ -23,6 +23,9 @@ for fmt in ('avif','webp'):
         source=root/('design/hero/three-final/'+key[5:]+'.jpg' if key.startswith('hero-') else 'public/shop/'+key+'.jpg')
         with Image.open(source) as original:
             im=ImageOps.exif_transpose(original).convert('RGB')
+            if key in ('hero-01-complete-sets','hero-02-quran-stands'): im=im.crop((0,153,1920,776))
+            elif key=='hero-03-golden-gallery': im=im.crop((682,0,1920,1080))
+            elif key.endswith(('-set','-single')): im=im.crop((0,0,im.width,round(im.height*(.867 if key.endswith('-single') else .886))))
             n=row['widths'].index(800)
             with Image.open(root/'public/shop/optimized'/row[fmt][n]) as target:
                 ref=im.resize((800,round(im.height*800/im.width)),Image.Resampling.LANCZOS)

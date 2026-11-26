@@ -19,7 +19,7 @@ function ao_data($route){
 	}
 	$parent=json_decode(file_get_contents(get_template_directory().'/starter/catalog.json'),true);
 	foreach(array('Gold','White','Silver','Black') as $f)foreach(array('set','single') as $k){
-		$s=strtolower($f).'-'.$k;$p=wc_get_product(wc_get_product_id_by_sku($s));if(!$p||$p->get_status()!=='publish')continue;
+		$s=strtolower($f).'-'.$k;$p=wc_get_product(wc_get_product_id_by_sku($s));if(!$p||$p->get_status()!=='publish'||get_post_field('post_password',$p->get_id()))continue;
 		$name=$p->get_name();if(stripos($name,$f.' ')===0)$name=substr($name,strlen($f)+1);
 		$d['catalog'][]=array('sku'=>$s,'kind'=>$k,'finish'=>$f,'name'=>$name,'price'=>(float)$p->get_price(),'original'=>(float)($p->get_regular_price()?:$p->get_price()),'available'=>$p->is_purchasable()&&$p->is_in_stock(),'sales'=>(int)$p->get_total_sales());
 		$d['urls']['/products/'.$s]=get_permalink($p->get_id());
@@ -48,7 +48,7 @@ function ao_data($route){
 		}}
 	$logo=(int)get_option('site_logo');if($logo && $logo!==(int)get_option('am_media_'.md5('aytal-mart.png')))$d['logo']=wp_get_attachment_image_url($logo,'medium');
 	foreach($parent['pages'] as $seed){$slug=$seed['slug'];$post=$slug==='privacy-policy'?get_post((int)get_option('wp_page_for_privacy_policy')):get_page_by_path($slug);if(!$post||$post->post_status!=='publish')continue;
-		$d['urls']['/pages/'.$slug]=get_permalink($post);if($route==='/pages/'.$post->post_name){
+		$d['urls']['/pages/'.$slug]=get_permalink($post);if($route==='/pages/'.$slug||$route==='/pages/'.$post->post_name){
 			$normalize=static function($html){return trim(preg_replace('/\s+/u',' ',preg_replace('/<!--.*?-->/s','',$html)));};
 			$d['route']='/pages/'.$slug;$d['pages'][]=array('slug'=>$slug,'title'=>$post->post_title,'customCopy'=>$normalize($post->post_content)!==$normalize(wp_kses_post($seed['html'])),'html'=>wp_kses_post(apply_filters('the_content',$post->post_content)));}}
 	if(str_starts_with($route,'/pages/')&&!$d['pages']){$post=get_queried_object();if($post instanceof WP_Post)$d['pages'][]=array('slug'=>$post->post_name,'title'=>$post->post_title,'html'=>wp_kses_post(apply_filters('the_content',$post->post_content)));}

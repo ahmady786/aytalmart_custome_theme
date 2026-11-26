@@ -1,4 +1,5 @@
 import rates from './stand-rates.json'
+import images from './shop-image-manifest.json'
 export const finishes = ['Gold', 'White', 'Silver', 'Black'] as const
 export type Finish = typeof finishes[number]
 export type Kind = 'set' | 'single'
@@ -17,7 +18,11 @@ export const products = (['set', 'single'] as const).flatMap(kind =>
 export type Product = typeof products[number]
 export const productFor = (sku: string) => products.find(p => p.sku === sku)
 export const money = (value: number) => 'Rs ' + value.toLocaleString('en-US')
-export const shot = (p: Product, original = false) => '/shop/' + p.sku + (original ? '-photo.jpg' : p.kind==='set'?'.jpg?v=2999':'.jpg')
+export const shot = (p: Product, original = false) => {
+  const key=(p.sku+(original?'-photo':'')) as keyof typeof images
+  const files=images[key].webp
+  return '/shop/optimized/'+files[files.length-1]
+}
 export function validLines(value: unknown): value is CartLine[] {
   if (!Array.isArray(value) || value.length > products.length) return false
   const seen = new Set<string>()

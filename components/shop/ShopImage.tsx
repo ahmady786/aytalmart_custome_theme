@@ -1,7 +1,7 @@
 import manifest from '@/lib/shop-image-manifest.json'
 import mobile from '@/lib/shop-mobile-heroes.json'
 
-export const phoneMedia='(max-width:740px), (max-width:950px) and (max-height:520px) and (orientation:landscape)'
+export const phoneMedia='(max-width:740px) and (orientation:portrait), (max-width:599px)'
 type Props={asset:string;alt:string;sizes:string;eager?:boolean;maxWidth?:number;mobileAsset?:string}
 const prefix='/shop/optimized/'
 export function fullSize(asset:string){

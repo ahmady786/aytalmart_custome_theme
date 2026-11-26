@@ -1,6 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 require_once __DIR__.'/store-data.php';
+require_once __DIR__.'/seo.php';
 require_once __DIR__.'/orders.php';
 require_once __DIR__.'/cart-checkout.php';
 require_once __DIR__.'/buy-now.php';
@@ -16,6 +17,7 @@ add_action('customize_register',static function($customizer){
 	}
 });
 function ao_routes(){
+	ao_seo_rules();
 	add_rewrite_rule('^(collections(?:/[a-z0-9-]+)?|guide|blogs/news)/?$','index.php?ao_view=$matches[1]','top');
 	add_rewrite_rule('^products/([a-z0-9-]+)/?$','index.php?ao_view=products/$matches[1]','top');
 }
@@ -24,16 +26,17 @@ add_filter('query_vars',static function($v){$v[]='ao_view';return $v;});
 add_action('template_redirect',static function(){
 	$v=trim((string)get_query_var('ao_view'),'/');if($v==='')return;
 	if('yes'===get_option('woocommerce_coming_soon')&&!current_user_can('manage_woocommerce')){wp_safe_redirect(wc_get_page_permalink('shop'));exit;}
+	if(!function_exists('WC'))return;
 	if(preg_match('~^products/(.+)$~',$v,$m)){
-		$id=wc_get_product_id_by_sku($m[1]);if($id && 'publish'===get_post_status($id)){wp_safe_redirect(get_permalink($id));exit;}
 		$src=json_decode(file_get_contents(__DIR__.'/dist/legacy-slugs.json'),true);
 		if(in_array($m[1],$src,true))return;
-	}else if(!preg_match('~^collections/(.+)$~',$v,$m)||$m[1]==='all'||term_exists($m[1],'product_cat')||in_array($m[1],json_decode(file_get_contents(__DIR__.'/dist/legacy-categories.json'),true),true))return;
+		$id=wc_get_product_id_by_sku($m[1]);if($id && 'publish'===get_post_status($id) && !get_post_field('post_password',$id)){if(untrailingslashit(get_permalink($id))===home_url('/'.$v))return;wp_safe_redirect(get_permalink($id),301);exit;}
+	}else if(in_array($v,array('guide','blogs/news','collections','collections/all'),true) || (preg_match('~^collections/([a-z0-9-]+)$~D',$v,$m) && (get_term_by('slug',$m[1],'product_cat')||in_array($m[1],json_decode(file_get_contents(__DIR__.'/dist/legacy-categories.json'),true),true))))return;
 	global $wp_query;$wp_query->set_404();$wp_query->set('ao_view','');status_header(404);nocache_headers();
 },5);
 add_action('after_switch_theme',static function(){ao_routes();flush_rewrite_rules(false);});
 function ao_context(){
-	if(!function_exists('is_woocommerce')||is_admin()||is_feed()||wp_doing_ajax()||is_preview()||is_customize_preview())return false;
+	if(!function_exists('is_woocommerce')||is_admin()||is_404()||is_feed()||wp_doing_ajax()||is_preview()||is_customize_preview()||(is_singular()&&post_password_required()))return false;
 	$v=trim((string)get_query_var('ao_view'),'/');
 	if($v && !preg_match('~^(guide|blogs/news|collections(?:/[a-z0-9-]+)?|products/[a-z0-9-]+)$~D',$v))return false;
 	$restricted=is_product()||is_shop()||is_product_taxonomy()||is_checkout()||is_cart()||is_account_page()||$v;
@@ -49,7 +52,7 @@ function ao_context(){
 	if(is_shop())return '/collection';
 	if(is_product_category())return '/collections/'.get_queried_object()->slug;
 	if(is_product()){$p=wc_get_product(get_queried_object_id());return $p && am_stand($p)?'/products/'.$p->get_sku():false;}
-	if(is_page()&&!is_cart()&&!is_account_page())return '/pages/'.get_post_field('post_name',get_queried_object_id());
+	if(is_page()&&!is_cart()&&!is_account_page())return '/pages/'.(ao_legacy_page_key(get_queried_object_id())?:get_post_field('post_name',get_queried_object_id()));
 	return false;
 }
 // Direct Buy keeps the selection in the URL until submission. An empty Woo

@@ -16,7 +16,7 @@ angles = {'gold-set':[1464,1466], 'gold-single':[1453,1461], 'silver-set':[1474,
           'silver-single':[1470,1479], 'black-set':[1512,1513], 'black-single':[1517,1518], 'white-set':[1443,1446]}
 def media(key, width, name):
     m = manifest[key]
-    filename = m['webp'][m['widths'].index(width)]
+    filename = m['webp'][m['widths'].index(min(width,max(m['widths'])))]
     blob[name] = images / 'optimized' / filename
     return name
 for kind in ('set','single'):
@@ -32,7 +32,7 @@ for kind in ('set','single'):
 for i,key in enumerate(('hero-01-complete-sets','hero-02-quran-stands','hero-03-golden-gallery'),1):
     media(key,1600,'hero-'+str(i)+'.webp')
 blob['aytal-mart.png']=root/'public/brand/aytal-mart.png'
-out=root/'wordpress/aytal-mart-upload.zip'
+out=root/'wordpress'/('aytal-mart-parent-2.0.8.zip' if '--release-208' in sys.argv else 'aytal-mart-upload.zip')
 with ZipFile(out,'w',ZIP_DEFLATED) as z:
     for p in sorted(theme.glob('**/*')):
         if p.is_file() and p.suffix in ('.php','.json','.html','.css','.js'):

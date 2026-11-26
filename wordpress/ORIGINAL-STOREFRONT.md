@@ -2,7 +2,7 @@
 
 This is a child of the existing `aytal-mart` WooCommerce theme, not a new visual design. Its frontend is bundled from the approved storefront in `app/(shop)`, `components/shop` and `lib`. The parent retains the native products and two-unit pricing. Install the packaged parent if it is not already present; do not run its setup/import again on a populated store.
 
-- Installable child: `wordpress/aytal-original-2.0.6.zip`. Activate **AYTAL MART — Original Storefront** under Appearance → Themes. Do not change the main domain or the store visibility to test this.
+- Installable child: `wordpress/aytal-original-2.0.8.zip`. Activate **AYTAL MART — Original Storefront** under Appearance → Themes. See [current release notes](RELEASE-2.0.8.md) and [SEO cutover instructions](SEO-RELEASE.md). Do not change the main domain or the store visibility to test this.
 - Manage the original eight stand SKUs, prices, images, gallery, descriptions and stock under Products. Keep their SKUs (e.g. `gold-set`) intact. Change information-page content under Pages. Standard set studio images exclude the old price strip. If replacing hero banners, use your own up-to-date prices.
 - Buy 1 / Buy 2 open the custom checkout. Final submissions use WooCommerce checkout, COD, shipping rates, stock and the native order number. No order information is sent to the former frontend.
 - Cart → Proceed to checkout uses the same COD form. Cart checkout updates WooCommerce cart lines by their native key (including variations), keeps coupons, and uses server-calculated totals. Customer account, order-pay and order-received endpoints are not replaced by the checkout form.
@@ -22,7 +22,7 @@ From the project root, with the existing approved Next production build availabl
     node scripts/build-original-wp.cjs
     node scripts/qa-original-wp.cjs
     node scripts/qa-shop-cart.cjs
-    tar.exe -a -cf wordpress/aytal-original-2.0.6.zip -C wordpress aytal-original
+    py -3 -m zipfile -c wordpress/aytal-original-2.0.8.zip wordpress/aytal-original
 
 2.0.3 uses a separate portrait picture source (AVIF with WebP fallback) on each of the three slides. The current mobile header and hero are rendered into the initial HTML. WordPress Customizer → **AYTAL MART: mobile hero images** accepts independent mobile photo replacements. Re-export the eight optimized source groups only when their masters change. Mobile prices and links remain HTML; prices printed in the approved desktop artwork require a new banner if offers change.
 

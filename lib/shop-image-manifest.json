@@ -100,7 +100,7 @@
  },
  "black-single": {
   "width": 1122,
-  "height": 1402,
+  "height": 1216,
   "widths": [
    96,
    192,
@@ -111,22 +111,22 @@
    1122
   ],
   "avif": [
-   "black-single-96-eb1184a37504.avif",
-   "black-single-192-d49f60a38b8a.avif",
-   "black-single-320-de30e1d286f0.avif",
-   "black-single-400-bf19da4dfa2c.avif",
-   "black-single-640-42f1b83f81d7.avif",
-   "black-single-800-17e0a6e08f9c.avif",
-   "black-single-1122-5765cadae370.avif"
+   "black-single-96-c1c149813629.avif",
+   "black-single-192-a579843872c2.avif",
+   "black-single-320-3d0e1162cd05.avif",
+   "black-single-400-a30feb333164.avif",
+   "black-single-640-d049d53d01c9.avif",
+   "black-single-800-5b2feb8d5153.avif",
+   "black-single-1122-442c99ead8b5.avif"
   ],
   "webp": [
-   "black-single-96-825468f16e5d.webp",
-   "black-single-192-804bd8a8f8aa.webp",
-   "black-single-320-973929bb5196.webp",
-   "black-single-400-11badf294c6b.webp",
-   "black-single-640-ced2fb6a9965.webp",
-   "black-single-800-6a6ec44c08ed.webp",
-   "black-single-1122-6be2d194b7e5.webp"
+   "black-single-96-1a45c6f11f3f.webp",
+   "black-single-192-4221a49b3a0a.webp",
+   "black-single-320-905dd4cdd3c5.webp",
+   "black-single-400-216d101773b9.webp",
+   "black-single-640-53d52892b058.webp",
+   "black-single-800-91d069cf8bfc.webp",
+   "black-single-1122-48d73059535f.webp"
   ]
  },
  "gold-set-photo": {
@@ -230,7 +230,7 @@
  },
  "gold-single": {
   "width": 1122,
-  "height": 1402,
+  "height": 1216,
   "widths": [
    96,
    192,
@@ -241,22 +241,22 @@
    1122
   ],
   "avif": [
-   "gold-single-96-fdca5a3ef3ba.avif",
-   "gold-single-192-3086640b41f4.avif",
-   "gold-single-320-57b6a7fc78c7.avif",
-   "gold-single-400-d5d9882a7bac.avif",
-   "gold-single-640-abb47054c17e.avif",
-   "gold-single-800-38964b218365.avif",
-   "gold-single-1122-6c16a9359bd3.avif"
+   "gold-single-96-858006c22609.avif",
+   "gold-single-192-418ed9310077.avif",
+   "gold-single-320-2c852f7fb33c.avif",
+   "gold-single-400-dc2c9f440dc5.avif",
+   "gold-single-640-37106aba32f2.avif",
+   "gold-single-800-d94c3117b6fc.avif",
+   "gold-single-1122-585554113ef1.avif"
   ],
   "webp": [
-   "gold-single-96-26382ab515fc.webp",
-   "gold-single-192-b914de27b78d.webp",
-   "gold-single-320-0e899b3a49eb.webp",
-   "gold-single-400-e3315b081cf0.webp",
-   "gold-single-640-a6396b99efcb.webp",
-   "gold-single-800-5ba05d20e1c7.webp",
-   "gold-single-1122-e71be72c2620.webp"
+   "gold-single-96-9098a0810726.webp",
+   "gold-single-192-42fec0255b0e.webp",
+   "gold-single-320-4e43daa6684d.webp",
+   "gold-single-400-8d715419a2fc.webp",
+   "gold-single-640-256437a5ca85.webp",
+   "gold-single-800-3d9190dd2757.webp",
+   "gold-single-1122-14c606ed944e.webp"
   ]
  },
  "silver-set-photo": {
@@ -360,7 +360,7 @@
  },
  "silver-single": {
   "width": 1122,
-  "height": 1402,
+  "height": 1216,
   "widths": [
    96,
    192,
@@ -371,22 +371,22 @@
    1122
   ],
   "avif": [
-   "silver-single-96-45a7a3d3a6ef.avif",
-   "silver-single-192-f8392d2eace6.avif",
-   "silver-single-320-226b47a8db7a.avif",
-   "silver-single-400-6687549db9be.avif",
-   "silver-single-640-a6fd2365d2cf.avif",
-   "silver-single-800-fa6edc1f6266.avif",
-   "silver-single-1122-a59e0fa5ce61.avif"
+   "silver-single-96-77ddd46f915d.avif",
+   "silver-single-192-44f9044518a9.avif",
+   "silver-single-320-9449fbf4024e.avif",
+   "silver-single-400-0f9355bba2cf.avif",
+   "silver-single-640-8c55f4cd729c.avif",
+   "silver-single-800-fd13c85031f8.avif",
+   "silver-single-1122-8b788ce479cf.avif"
   ],
   "webp": [
-   "silver-single-96-7f1cb3907e0c.webp",
-   "silver-single-192-87695067a30a.webp",
-   "silver-single-320-3060a5b8f7da.webp",
-   "silver-single-400-131436705335.webp",
-   "silver-single-640-c438a4be09a6.webp",
-   "silver-single-800-b6438e7aa4cd.webp",
-   "silver-single-1122-23358e4bf6fc.webp"
+   "silver-single-96-3b173dccca15.webp",
+   "silver-single-192-f059d0d134f4.webp",
+   "silver-single-320-d2d479699d61.webp",
+   "silver-single-400-99d63fa38125.webp",
+   "silver-single-640-848d86955c78.webp",
+   "silver-single-800-73d6a3f353e6.webp",
+   "silver-single-1122-5839920fb841.webp"
   ]
  },
  "white-set-photo": {
@@ -490,7 +490,7 @@
  },
  "white-single": {
   "width": 1122,
-  "height": 1402,
+  "height": 1216,
   "widths": [
    96,
    192,
@@ -501,27 +501,27 @@
    1122
   ],
   "avif": [
-   "white-single-96-09e1b9e45605.avif",
-   "white-single-192-53649cf8e937.avif",
-   "white-single-320-93eccb722f06.avif",
-   "white-single-400-8cbc4f252f9e.avif",
-   "white-single-640-8f4a293f2cb6.avif",
-   "white-single-800-2a89a2107300.avif",
-   "white-single-1122-09b0d220e54a.avif"
+   "white-single-96-8315571724a3.avif",
+   "white-single-192-9ca47f43e7bb.avif",
+   "white-single-320-c7afde4df450.avif",
+   "white-single-400-3b1c066eedd0.avif",
+   "white-single-640-4d5366a5d5d1.avif",
+   "white-single-800-78ee5fbea6f9.avif",
+   "white-single-1122-2d4db8217270.avif"
   ],
   "webp": [
-   "white-single-96-e6f4178d76ea.webp",
-   "white-single-192-099f73447a75.webp",
-   "white-single-320-34ec68a2eb66.webp",
-   "white-single-400-ffb12dcb651e.webp",
-   "white-single-640-d3130654250d.webp",
-   "white-single-800-1375029225bc.webp",
-   "white-single-1122-9a69a7cabb0a.webp"
+   "white-single-96-0bb9bc0ee420.webp",
+   "white-single-192-ff4455ffa408.webp",
+   "white-single-320-6bb07181f2fb.webp",
+   "white-single-400-283982b7b41e.webp",
+   "white-single-640-435fd965b830.webp",
+   "white-single-800-17c7a5d20621.webp",
+   "white-single-1122-f87a7835e912.webp"
   ]
  },
  "hero-01-complete-sets": {
   "width": 1920,
-  "height": 940,
+  "height": 623,
   "widths": [
    480,
    800,
@@ -530,23 +530,23 @@
    1920
   ],
   "avif": [
-   "hero-01-complete-sets-480-18a815ea3778.avif",
-   "hero-01-complete-sets-800-10ee4c0a705e.avif",
-   "hero-01-complete-sets-1200-c0638d5a7ecc.avif",
-   "hero-01-complete-sets-1600-c0bcd390673d.avif",
-   "hero-01-complete-sets-1920-2e724b817290.avif"
+   "hero-01-complete-sets-480-622fe6f74106.avif",
+   "hero-01-complete-sets-800-ea6c24aa693c.avif",
+   "hero-01-complete-sets-1200-48e3445cbf5a.avif",
+   "hero-01-complete-sets-1600-17909ee5f3e4.avif",
+   "hero-01-complete-sets-1920-d5143ebc52ca.avif"
   ],
   "webp": [
-   "hero-01-complete-sets-480-2fcd1dc56d6f.webp",
-   "hero-01-complete-sets-800-765b605ec3de.webp",
-   "hero-01-complete-sets-1200-db9eb6896a3b.webp",
-   "hero-01-complete-sets-1600-85d46cd3f252.webp",
-   "hero-01-complete-sets-1920-b0e21a9549fb.webp"
+   "hero-01-complete-sets-480-092005cbbff0.webp",
+   "hero-01-complete-sets-800-f8ae664ba35d.webp",
+   "hero-01-complete-sets-1200-187f609a37ed.webp",
+   "hero-01-complete-sets-1600-9f3da9348a05.webp",
+   "hero-01-complete-sets-1920-dafc087fb6b4.webp"
   ]
  },
  "hero-02-quran-stands": {
   "width": 1920,
-  "height": 940,
+  "height": 623,
   "widths": [
    480,
    800,
@@ -555,43 +555,40 @@
    1920
   ],
   "avif": [
-   "hero-02-quran-stands-480-13ef608a20e3.avif",
-   "hero-02-quran-stands-800-c16fc4f2c554.avif",
-   "hero-02-quran-stands-1200-bf20723d2235.avif",
-   "hero-02-quran-stands-1600-0db46f070659.avif",
-   "hero-02-quran-stands-1920-b06d288ca0f0.avif"
+   "hero-02-quran-stands-480-8a13818e145f.avif",
+   "hero-02-quran-stands-800-f3e4de905691.avif",
+   "hero-02-quran-stands-1200-d877afce8498.avif",
+   "hero-02-quran-stands-1600-5d8f781f9269.avif",
+   "hero-02-quran-stands-1920-29858d5da61a.avif"
   ],
   "webp": [
-   "hero-02-quran-stands-480-09d0318a8bd2.webp",
-   "hero-02-quran-stands-800-823739832bb3.webp",
-   "hero-02-quran-stands-1200-951407fe6dd4.webp",
-   "hero-02-quran-stands-1600-a9bba2176c9f.webp",
-   "hero-02-quran-stands-1920-c46aa87b4e68.webp"
+   "hero-02-quran-stands-480-59405f7710d4.webp",
+   "hero-02-quran-stands-800-e6694247a117.webp",
+   "hero-02-quran-stands-1200-db2df42aeeab.webp",
+   "hero-02-quran-stands-1600-0fd3cc973a4c.webp",
+   "hero-02-quran-stands-1920-4f4422084de3.webp"
   ]
  },
  "hero-03-golden-gallery": {
-  "width": 1920,
+  "width": 1238,
   "height": 1080,
   "widths": [
    480,
    800,
    1200,
-   1600,
-   1920
+   1238
   ],
   "avif": [
-   "hero-03-golden-gallery-480-63c612c6947d.avif",
-   "hero-03-golden-gallery-800-33ba3d443cb6.avif",
-   "hero-03-golden-gallery-1200-1a441392a251.avif",
-   "hero-03-golden-gallery-1600-210cf5e96fae.avif",
-   "hero-03-golden-gallery-1920-8b7a25010c9a.avif"
+   "hero-03-golden-gallery-480-2aa0e0549fd5.avif",
+   "hero-03-golden-gallery-800-8d3831cfa268.avif",
+   "hero-03-golden-gallery-1200-c5e5c75cf4d4.avif",
+   "hero-03-golden-gallery-1238-478c7d2b5a45.avif"
   ],
   "webp": [
-   "hero-03-golden-gallery-480-58f36aa29075.webp",
-   "hero-03-golden-gallery-800-ae0f4c9da2bd.webp",
-   "hero-03-golden-gallery-1200-1cdfa29d0cf5.webp",
-   "hero-03-golden-gallery-1600-00b0a71cef8a.webp",
-   "hero-03-golden-gallery-1920-93334247cc51.webp"
+   "hero-03-golden-gallery-480-a898280409d3.webp",
+   "hero-03-golden-gallery-800-b46795838742.webp",
+   "hero-03-golden-gallery-1200-2ac0872e8b6d.webp",
+   "hero-03-golden-gallery-1238-803c4f237c39.webp"
   ]
  }
 }

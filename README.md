@@ -1,10 +1,10 @@
 # AYTAL MART custom theme
 
-AYTAL MART WordPress/WooCommerce theme, version **2.0.6**. [Open the public design preview](https://ahmady786.github.io/aytalmart_custome_theme/). GitHub Pages does not accept orders, payments, sign-ins or shipping addresses.
+AYTAL MART WordPress/WooCommerce theme, release **2.0.8**. [Public design preview](https://ahmady786.github.io/aytalmart_custome_theme/) is independently deployed and may show an earlier revision. GitHub Pages does not accept orders, payments, sign-ins or shipping addresses.
 
 ## Restore to WordPress
 
-1. Download [the parent theme ZIP](wordpress/aytal-mart-upload.zip) and [the 2.0.6 child theme ZIP](wordpress/aytal-original-2.0.6.zip). Do not upload GitHub's "Download ZIP" as a theme.
+1. Use [the release parent theme ZIP](wordpress/aytal-mart-parent-2.0.8.zip) and [the 2.0.8 child theme ZIP](wordpress/aytal-original-2.0.8.zip). See [2.0.8 launch notes](wordpress/RELEASE-2.0.8.md). Do not upload the outer release bundle or GitHub's "Download ZIP" as a theme.
 2. In WordPress, install and activate WooCommerce if it is not already active. Under **Appearance → Themes → Add Theme → Upload Theme**, install the parent first, then install and activate **AYTAL MART — Original Storefront** (the child).
 3. On an existing shop, keep its catalog, settings, and orders; do not run the parent starter import again. [Theme notes](wordpress/ORIGINAL-STOREFRONT.md) cover content editing and checkout.
 

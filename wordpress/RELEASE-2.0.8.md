@@ -1,0 +1,11 @@
+# AYTAL MART 2.0.8 — responsive hero and single-stand pricing
+
+The installable child is **aytal-original-2.0.8.zip**. The parent is **aytal-mart-parent-2.0.8.zip** (theme directory: aytal-mart). Install the parent first on a new site and activate the child. On a populated site, back up files/database and keep the previous child; do not rerun the starter import. The outer bundle is not an installable theme.
+
+All four single stands: regular PKR 2,500, sale PKR 2,199 and any two PKR 4,399. Two individual sale prices sum to 4,398; the requested pair price is one rupee higher, not an extra discount. Complete-set rates are unchanged. The child upgrades the existing four stand SKUs once and does not edit past orders. Product cards, offer text and checkout read the store's pricing. The supplied hero and studio single-stand delivery images no longer contain old prices.
+
+Verified on local WordPress 7.1.5 + WooCommerce 11.3.1. The release was installed from ZIP with all four singles pre-seeded at the former 4,000 regular price. Browser checks: three slides at 320×568, 390×844, 768×1024, 844×390, 1280×640, 1355×555 and 1920×1080. The short-laptop single-stand image occupies 1,043 CSS px at 1355×555. Portrait phones use the separate two-by-two composition. All four product records migrated and the two-unit COD checkout displayed 4,399. No order was submitted. Local homepage mobile Lighthouse SEO: 100.
+
+The public legacy sitemap still lists 20 HTML pages and /agents.md. All 20 HTML pages returned a direct 200 and a self-canonical on the replacement WordPress store; all 41 migration assertions passed. The old site's four product pages rate-limited the batch crawler; their paths come from its public sitemap. This inventory does not certify every historical backlink.
+
+**Do not point the domain at the existing staging site yet.** At inspection it served child theme 2.0.0 and redirected /pages/faq. After backup, install 2.0.8 on Hostinger staging, verify the pages, mobile hero, four prices and a controlled COD order/email, then use the cutover checklist in SEO-RELEASE.md. On production only, review/merge the supplied robots.txt at the web root. Never overwrite protection rules or enable indexing on staging. Keep DNS, the old live shop and GitHub unchanged until deployment is approved.

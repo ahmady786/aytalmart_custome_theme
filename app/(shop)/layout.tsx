@@ -12,6 +12,7 @@ import './product-display.css'
 import './cod-checkout.css'
 import './customer-care.css'
 import './shop-cart.css'
+import './hero-layout.css'
 export const viewport: Viewport = { themeColor: '#322419' }
 export const metadata: Metadata = {
   metadataBase:new URL(siteOrigin),

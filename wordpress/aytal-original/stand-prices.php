@@ -13,6 +13,20 @@ function aytal_set_catalog_rates(){
  update_option('aytal_catalog_rates_206',1,false);
 }
 add_action('wp_loaded','aytal_set_catalog_rates',1);
+// Upgrade previously seeded sites once, without repricing sets or past orders.
+add_action('wp_loaded',static function(){
+ if(!function_exists('WC')||get_option('aytal_single_rates_208'))return;
+ $done=0;$r=aytal_rates()['single'];
+ foreach(array('gold','white','silver','black') as $finish){
+  $id=wc_get_product_id_by_sku($finish.'-single');$p=$id?wc_get_product($id):false;
+  if(!$p||!am_stand($p))continue;
+  if(!$p->get_meta('_aytal_single_rates_208')){
+   $p->set_regular_price((string)$r['original']);$p->set_sale_price((string)$r['price']);$p->set_price((string)$r['price']);
+   $p->update_meta_data('_aytal_single_rates_208','yes');$p->save();wc_delete_product_transients($id);
+  }$done++;
+ }
+ if($done===4)update_option('aytal_single_rates_208',1,false);
+},2);
 function aytal_pair_lines($rows){
  $count=array('set'=>0,'single'=>0);$used=array('set'=>0,'single'=>0);$out=array();
  foreach($rows as $r)$count[$r['kind']]+=$r['qty'];

@@ -2,7 +2,7 @@
 const fs=require('fs'),http=require('http'),path=require('path'),assert=require('node:assert/strict')
 const root=path.resolve(__dirname,'..'),dist=path.join(root,'wordpress/aytal-original/dist'),t=path.join(root,'tmp/aytal-parity-tools/node_modules'),{chromium}=require(path.join(t,'playwright-core')),{PNG}=require(path.join(t,'pngjs'))
 const output=path.join(root,'tmp/aytal-parity');fs.mkdirSync(output,{recursive:true})
-const catalog=['set','single'].flatMap(kind=>['Gold','White','Silver','Black'].map(finish=>({sku:finish.toLowerCase()+'-'+kind,kind,finish,name:kind==='set'?'Quran & Janamaz Stand Set':'Quran Stand',price:kind==='set'?2999:2199,original:kind==='set'?3500:4000,available:true,sales:0})))
+const catalog=['set','single'].flatMap(kind=>['Gold','White','Silver','Black'].map(finish=>({sku:finish.toLowerCase()+'-'+kind,kind,finish,name:kind==='set'?'Quran & Janamaz Stand Set':'Quran Stand',...require('../lib/stand-rates.json')[kind],available:true,sales:0})))
 function send(res,code,type,content){res.writeHead(code,{'Content-Type':type});res.end(content)}
 const received=[];
 const messages=[];
@@ -72,8 +72,9 @@ async function run(){const parser=new (require(path.join(t,'php-parser')))({pars
   await pg.setViewportSize({width:w,height:h});const requested=new Set();const collect=r=>requested.add(r.url());pg.on('request',collect);
   await pg.goto(base+'/');const button=pg.getByRole('button',{name:'Open menu'});assert.equal(await button.isVisible(),isPhone);
   if(isPhone){await button.click();const nav=pg.locator('#mast-navigation');await nav.getByRole('link',{name:'Track Order'}).waitFor();assert.equal(await pg.locator('.mast-toggle').getAttribute('aria-expanded'),'true');await pg.keyboard.press('Escape');assert.equal(await nav.isVisible(),false);assert(await button.evaluate(e=>e===document.activeElement));const [a,b]=await Promise.all([pg.locator('header .brand-lockup').boundingBox(),button.boundingBox()]);assert(a.x+a.width<b.x);await button.click();await nav.getByRole('link',{name:'Contact',exact:true}).click();await pg.getByRole('heading',{name:'Contact AYTAL MART',exact:true}).waitFor();await pg.goto(base+'/')}
-  for(let i=0;i<3;i++){const source=await pg.locator('.hero-artwork img').evaluate(async img=>{await img.decode();return img.currentSrc});assert.equal(source.includes('/mobile-hero-'),isPhone,source);if(i<2)await pg.getByRole('button',{name:'Next slide'}).click()}
-  const wrong=[...requested].filter(url=>isPhone?/\/optimized\/hero-0/.test(url):url.includes('/mobile-hero-'));assert.deepEqual(wrong,[],w+' wrong art fetched');pg.off('request',collect)
+  const portrait=w<=599||(w<=740&&h>=w);
+  for(let i=0;i<3;i++){const source=await pg.locator('.hero-artwork img').evaluate(async img=>{await img.decode();return img.currentSrc});assert.equal(source.includes('/mobile-hero-'),portrait,source);if(i<2)await pg.getByRole('button',{name:'Next slide'}).click()}
+  const wrong=[...requested].filter(url=>portrait?/\/optimized\/hero-0/.test(url):url.includes('/mobile-hero-'));assert.deepEqual(wrong,[],w+' wrong art fetched');pg.off('request',collect)
  }
  await pg.goto(base+'/pages/contact-aytal-mart');await pg.getByLabel('Your email').fill('qa@example.com');await pg.getByLabel('Your message').fill('Customer support fixture only.');await pg.getByRole('button',{name:'Send message'}).click();await pg.getByText('Your enquiry has been received.').waitFor();
  await pg.locator('footer .footer-support').click();await pg.getByLabel('Order number').fill('12345');await pg.getByLabel('Phone used at checkout').fill('03000000000');await pg.getByRole('button',{name:'Check status'}).click();await pg.getByText('Processing',{exact:true}).waitFor();assert.equal(messages.length,2);

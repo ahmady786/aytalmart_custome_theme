@@ -21,8 +21,14 @@ def encode(source):
         im=ImageOps.exif_transpose(original).convert('RGB')
         # The approved studio posters have a baked-in price footer. Deliver only
         # their photographic region; prices now belong to the commerce UI.
-        if source.parent==ROOT/'public/shop' and key.endswith('-set'):
+        if source.parent==ROOT/'public/shop' and key.endswith('-single'):
+            im=im.crop((0,0,im.width,round(im.height*.867)))
+        elif source.parent==ROOT/'public/shop' and key.endswith('-set'):
             im=im.crop((0,0,im.width,round(im.height*.886)))
+        elif hero:
+            # Delivery art only. Title, previous/current price and CTA are accessible HTML.
+            assert im.size == ((1920,1080) if key.startswith('hero-03') else (1920,940))
+            im=im.crop((682,0,1920,1080) if key.startswith('hero-03') else (0,153,1920,776))
         w,h=im.size
         widths=sorted({min(w,x) for x in ([480,800,1200,1600,1920] if hero or campaign else [96,192,320,400,640,800,1122,w])})
         output={}
@@ -46,7 +52,9 @@ hero_only='--hero-only' in sys.argv
 if hero_only:sources=[p for p in sources if p.parent.name=='three-final']
 set_only='--sets-only' in sys.argv
 if set_only:sources=[p for p in sources if p.parent==ROOT/'public/shop' and p.stem.endswith('-set')]
-result=json.loads(manifest.read_text()) if hero_only or set_only else {}
+release_only='--hero-and-singles' in sys.argv
+if release_only:sources=[p for p in sources if p.parent.name=='three-final' or (p.parent==ROOT/'public/shop' and p.stem.endswith('-single'))]
+result=json.loads(manifest.read_text()) if hero_only or set_only or release_only else {}
 with ThreadPoolExecutor(max_workers=3) as pool:
     result.update(pool.map(encode,sources))
 # Unused historic campaign artwork is encoded, but not shipped in client JS.
