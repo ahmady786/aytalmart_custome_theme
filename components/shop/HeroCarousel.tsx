@@ -23,8 +23,7 @@ export default function HeroCarousel() {
   const href = '/collection?type=' + kind
   const price = money(kinds[kind].price)
   const shopLabel = kind === 'single' ? 'Shop Quran stands' : 'Shop complete sets'
-  const title = ['Quran & Janamaz Stand Sets','Wall-Mounted Quran Stands','One set. Four finishes.'][index]
-  const sizes = index===2?'(max-width:740px) 100vw, min(64vw, 960px)':'(min-aspect-ratio:2/1) and (max-height:760px) 77vw, min(100vw, 1520px)'
+  const artwork = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -36,11 +35,25 @@ export default function HeroCarousel() {
 
   useEffect(() => {
     if (!playing || hovered) return
-    const timer = window.setInterval(() => {
-      if (!document.hidden) setIndex(i => wrap(i + 1))
-    }, 8000)
-    return () => window.clearInterval(timer)
-  }, [playing, hovered])
+    // Give each visible, loaded photo its full display time, including the
+    // initial complete sets on a slow connection or a background-tab launch.
+    const img=artwork.current?.querySelector('img')
+    if (!img) return
+    let timer: number | undefined
+    const schedule = () => {
+      window.clearTimeout(timer)
+      if (!document.hidden && img.complete && img.naturalWidth)
+        timer=window.setTimeout(() => setIndex(i => wrap(i + 1)),8000)
+    }
+    img.addEventListener('load',schedule)
+    document.addEventListener('visibilitychange',schedule)
+    schedule()
+    return () => {
+      window.clearTimeout(timer)
+      img.removeEventListener('load',schedule)
+      document.removeEventListener('visibilitychange',schedule)
+    }
+  }, [playing, hovered, index])
 
   function select(next: number) {
     setPlaying(false)
@@ -79,8 +92,8 @@ export default function HeroCarousel() {
           swallowClick.current = false
         }}>
         <Link prefetch={false} href={href} className="hero-photo" aria-label={shopLabel+' — '+price}>
-          <span className="hero-heading"><small>{index===2?'The golden edit':'The finish collection'}</small><span>{title}</span></span>
-          <span className="hero-artwork"><ShopImage asset={art} mobileAsset={art.replace('hero-','mobile-hero-')} sizes={sizes} eager alt={label+' in Gold, White, Silver and Black'}/></span>
+          <span className="hero-artwork" ref={artwork}><ShopImage asset={art} mobileAsset={art.replace('hero-','mobile-hero-')} sizes="100vw" eager alt={label+' in Gold, White, Silver and Black'}/></span>
+          {index===2 && <span className="hero-gallery-caption">One set. <em>Four finishes.</em></span>}
           <span className="hero-deal"><span className="hero-values"><small>{kind==='set'?'Per complete set':'Per Quran stand'}</small><span><strong>{price}</strong> <del>{money(kinds[kind].original)}</del></span></span>
             <span className="hero-cta">{shopLabel} <span aria-hidden="true">↗</span></span></span>
         </Link>

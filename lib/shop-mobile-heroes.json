@@ -1,59 +1,135 @@
 {
  "mobile-hero-01-complete-sets": {
-  "width": 960,
-  "height": 1214,
+  "width": 1122,
+  "height": 1402,
   "widths": [
    420,
-   640,
-   900
+   720,
+   960
   ],
   "avif": [
-   "mobile-hero-01-complete-sets-420-b48ad9cd6456.avif",
-   "mobile-hero-01-complete-sets-640-15c2badfacc6.avif",
-   "mobile-hero-01-complete-sets-900-853693015c17.avif"
+   "mobile-hero-01-complete-sets-420-48ac45f5f5f2.avif",
+   "mobile-hero-01-complete-sets-720-5bd353e9ecf7.avif",
+   "mobile-hero-01-complete-sets-960-5821330b3d47.avif"
   ],
   "webp": [
-   "mobile-hero-01-complete-sets-420-b89e49d04e66.webp",
-   "mobile-hero-01-complete-sets-640-4597ea1b5e3a.webp",
-   "mobile-hero-01-complete-sets-900-f498ab6aaeb3.webp"
+   "mobile-hero-01-complete-sets-420-4167abd289bf.webp",
+   "mobile-hero-01-complete-sets-720-935c8f28cf25.webp",
+   "mobile-hero-01-complete-sets-960-256a540d7abe.webp"
   ]
  },
  "mobile-hero-02-quran-stands": {
-  "width": 960,
-  "height": 1214,
+  "width": 1122,
+  "height": 1402,
   "widths": [
    420,
-   640,
-   900
+   720,
+   960
   ],
   "avif": [
-   "mobile-hero-02-quran-stands-420-682297e873f3.avif",
-   "mobile-hero-02-quran-stands-640-8edf636566fa.avif",
-   "mobile-hero-02-quran-stands-900-b22d52cd6c48.avif"
+   "mobile-hero-02-quran-stands-420-ac97baad58aa.avif",
+   "mobile-hero-02-quran-stands-720-d5f9535c3461.avif",
+   "mobile-hero-02-quran-stands-960-8ede79e3e246.avif"
   ],
   "webp": [
-   "mobile-hero-02-quran-stands-420-214ad63340d5.webp",
-   "mobile-hero-02-quran-stands-640-c7376b350983.webp",
-   "mobile-hero-02-quran-stands-900-732686738f4c.webp"
+   "mobile-hero-02-quran-stands-420-1b3a83311de7.webp",
+   "mobile-hero-02-quran-stands-720-da6f3f0d5ee3.webp",
+   "mobile-hero-02-quran-stands-960-7c9404a4d4fc.webp"
   ]
  },
  "mobile-hero-03-golden-gallery": {
-  "width": 860,
-  "height": 980,
+  "width": 1122,
+  "height": 1402,
   "widths": [
    420,
-   640,
-   860
+   720,
+   960
   ],
   "avif": [
-   "mobile-hero-03-golden-gallery-420-c0b693a56a4c.avif",
-   "mobile-hero-03-golden-gallery-640-8cc1eaf90e6f.avif",
-   "mobile-hero-03-golden-gallery-860-7c2d80e8d867.avif"
+   "mobile-hero-03-golden-gallery-420-b36a9421f853.avif",
+   "mobile-hero-03-golden-gallery-720-9933461f6f75.avif",
+   "mobile-hero-03-golden-gallery-960-829633e780c7.avif"
   ],
   "webp": [
-   "mobile-hero-03-golden-gallery-420-c12f28d075c0.webp",
-   "mobile-hero-03-golden-gallery-640-31e785823d5f.webp",
-   "mobile-hero-03-golden-gallery-860-c3c48b9504af.webp"
+   "mobile-hero-03-golden-gallery-420-3523356094d0.webp",
+   "mobile-hero-03-golden-gallery-720-c2acbb577f19.webp",
+   "mobile-hero-03-golden-gallery-960-7b61d139d7cc.webp"
+  ]
+ },
+ "tablet-hero-01-complete-sets": {
+  "width": 1536,
+  "height": 1024,
+  "widths": [
+   768,
+   1080,
+   1536
+  ],
+  "avif": [
+   "tablet-hero-01-complete-sets-768-afe96cef946b.avif",
+   "tablet-hero-01-complete-sets-1080-397790869f00.avif",
+   "tablet-hero-01-complete-sets-1536-fef4faf7c1b2.avif"
+  ],
+  "webp": [
+   "tablet-hero-01-complete-sets-768-169f3f8349d4.webp",
+   "tablet-hero-01-complete-sets-1080-f6263eb3103a.webp",
+   "tablet-hero-01-complete-sets-1536-0b223c52edb9.webp"
+  ]
+ },
+ "tablet-hero-02-quran-stands": {
+  "width": 1536,
+  "height": 1024,
+  "widths": [
+   768,
+   1080,
+   1536
+  ],
+  "avif": [
+   "tablet-hero-02-quran-stands-768-1d7408f3438f.avif",
+   "tablet-hero-02-quran-stands-1080-2bebfb34bc98.avif",
+   "tablet-hero-02-quran-stands-1536-0e45748a354a.avif"
+  ],
+  "webp": [
+   "tablet-hero-02-quran-stands-768-9e2c07f766e4.webp",
+   "tablet-hero-02-quran-stands-1080-911e968b4dad.webp",
+   "tablet-hero-02-quran-stands-1536-8efb84e84956.webp"
+  ]
+ },
+ "tablet-hero-03-golden-gallery": {
+  "width": 1536,
+  "height": 1024,
+  "widths": [
+   768,
+   1080,
+   1536
+  ],
+  "avif": [
+   "tablet-hero-03-golden-gallery-768-444dc0e25624.avif",
+   "tablet-hero-03-golden-gallery-1080-95d1391c018f.avif",
+   "tablet-hero-03-golden-gallery-1536-fc634f275a28.avif"
+  ],
+  "webp": [
+   "tablet-hero-03-golden-gallery-768-bdae2639e3b9.webp",
+   "tablet-hero-03-golden-gallery-1080-2d2678dffd29.webp",
+   "tablet-hero-03-golden-gallery-1536-89e35971ce9f.webp"
+  ]
+ },
+ "wide-hero-03-golden-gallery": {
+  "width": 1942,
+  "height": 809,
+  "widths": [
+   960,
+   1440,
+   1920
+  ],
+  "avif": [
+   "wide-hero-03-golden-gallery-960-6efa45aceb28.avif",
+   "wide-hero-03-golden-gallery-1440-f8b3ef02e43a.avif",
+   "wide-hero-03-golden-gallery-1920-9a7bd9f9bcea.avif"
+  ],
+  "webp": [
+   "wide-hero-03-golden-gallery-960-d03dd0d4ba8a.webp",
+   "wide-hero-03-golden-gallery-1440-404441665d9a.webp",
+   "wide-hero-03-golden-gallery-1920-1d0e2f975779.webp"
   ]
  }
 }

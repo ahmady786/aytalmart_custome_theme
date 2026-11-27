@@ -1,5 +1,5 @@
 'use client'
-import {useEffect,useRef,useState,type FormEvent} from 'react'
+import {useEffect,useId,useRef,useState,type ComponentPropsWithoutRef,type FormEvent} from 'react'
 import Link from 'next/link'
 import {money,priceLines,productFor,standOptionLabel,totals,type CartLine} from '@/lib/catalog'
 import {brand} from '@/lib/shop-brand'
@@ -64,11 +64,11 @@ export default function OrderFlow({selection,cart}:{selection?:CartLine[];cart?:
   return <form className="cod-form" onSubmit={submit} aria-busy={busy}>
     <section className="cod-shipping"><p className="shop-kicker">Delivery details</p><h3>Enter your shipping address</h3>
       <fieldset disabled={busy} className="cod-fields"><legend className="sr-only">Shipping address</legend>
-        <label>Full name<input name="name" required minLength={2} maxLength={80} autoComplete="name" placeholder="Full name"/></label>
-        <label>Delivery address<input name="address" required minLength={5} maxLength={350} autoComplete="street-address" placeholder="House, street, area or landmark"/></label>
-        <label>Phone number<input name="phone" type="tel" required minLength={7} maxLength={24} autoComplete="tel" placeholder="03XX XXXXXXX"/></label>
-        <label>City<input name="city" required minLength={2} maxLength={80} autoComplete="address-level2" placeholder="City"/></label>
-        <label>Email (optional)<input name="email" type="email" maxLength={254} autoComplete="email" placeholder="you@example.com"/></label>
+        <DeliveryField label="Full name" hint="پورا نام" name="name" required minLength={2} maxLength={80} autoComplete="name" placeholder="Full name"/>
+        <DeliveryField label="Delivery address" hint="مکمل پتہ" name="address" required minLength={5} maxLength={350} autoComplete="street-address" placeholder="House, street, area or landmark"/>
+        <DeliveryField label="Phone number" hint="رابطہ نمبر" name="phone" type="tel" required minLength={7} maxLength={24} autoComplete="tel" placeholder="03XX XXXXXXX"/>
+        <DeliveryField label="City" hint="شہر کا نام" name="city" required minLength={2} maxLength={80} autoComplete="address-level2" placeholder="City"/>
+        <DeliveryField label="Email (optional)" hint="اختیاری ای میل" name="email" type="email" maxLength={254} autoComplete="email" placeholder="you@example.com"/>
       </fieldset>
       <p className="cod-section-label">Shipping method</p><div className="cod-method"><span>◉ &nbsp; Home delivery</span><b>{shipping}</b></div>
     </section>
@@ -93,3 +93,13 @@ export default function OrderFlow({selection,cart}:{selection?:CartLine[];cart?:
   </form>
 }
 function Fee({label,value}:{label:string;value:number}){return <><dt>{label}</dt><dd>{money(value)}</dd></>}
+function DeliveryField({label,hint,...input}:ComponentPropsWithoutRef<'input'> & {label:string;hint:string}){
+  const id=useId()
+  return <div className="cod-field">
+    <div className="cod-field-copy">
+      <label htmlFor={id}>{label}</label>
+      <span className="cod-field-hint" id={id+'-hint'} lang="ur" dir="rtl">{hint}</span>
+    </div>
+    <input {...input} id={id} aria-describedby={id+'-hint'}/>
+  </div>
+}

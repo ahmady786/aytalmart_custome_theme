@@ -30,7 +30,7 @@ const plugin={name:'wordpress-host-adapters',setup(b){
    s=transform(s,'if (ready) {','if (ready&&!drawerCart) {')
   }else if(p.endsWith('/ShopImage.tsx')){
    s=transform(s,"const prefix='/shop/optimized/'","const prefix=hostData.base+'/shop/optimized/'");
-   s=transform(s,'const mobileSources=portrait&&','const custom=mobileAsset&&hostData.images[mobileAsset];const mobileSources=custom?<source media={phoneMedia} width={custom.width} height={custom.height} sizes="(max-width:540px) 100vw, 540px" srcSet={custom.srcset||custom.url}/>:portrait&&')
+   s=transform(s,'    const art=variants[id]','    const custom=hostData.images[id];if(custom)return <source key={id} media={media} width={custom.width} height={custom.height} sizes="100vw" srcSet={custom.srcset||custom.url}/>;\n    const art=variants[id]')
    s=transform(s,'  const count=', '  const override=hostData.images[asset];if(override)return <picture className="shop-picture">{mobileSources}<img src={override.url} srcSet={override.srcset||undefined} sizes={sizes} alt={alt} width={override.width} height={override.height} loading={eager?"eager":"lazy"}/></picture>;\n  const count=')
    s=transform(s,'  return prefix+entry.webp','  if(hostData.images[asset])return hostData.images[asset].url;\n  return prefix+entry.webp')
   }else if(p.endsWith('/ProductGallery.tsx')){
